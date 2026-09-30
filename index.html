@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amit Match - Dating & Match</title>
+<meta name="description" content="Amit Match - Find Your Match">
+<title>Amit Match ❤️</title>
 
 <style>
 *{
@@ -12,305 +13,432 @@
   padding:0;
 }
 
+:root{
+  --pink:#e91e63;
+  --pink2:#ff4f8b;
+  --purple:#9c27b0;
+  --dark:#25232a;
+  --gray:#777;
+  --light:#fff5f8;
+  --white:#fff;
+  --border:#e3dce0;
+  --green:#16a34a;
+  --red:#dc2626;
+}
+
 body{
-  font-family:Arial, sans-serif;
-  background:#fff5f8;
-  color:#25232a;
+  font-family:Arial,"Noto Sans Bengali",sans-serif;
+  background:var(--light);
+  color:var(--dark);
+  min-height:100vh;
 }
 
-header{
-  background:linear-gradient(135deg,#ff4f81,#8e44ad);
-  color:white;
-  padding:18px 15px;
-  position:sticky;
-  top:0;
-  z-index:10;
-  box-shadow:0 3px 12px rgba(0,0,0,.15);
+button,
+input,
+select,
+textarea{
+  font-family:inherit;
 }
 
-.header{
-  max-width:1000px;
-  margin:auto;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.logo{
-  font-size:25px;
-  font-weight:bold;
-}
-
-nav button{
-  border:0;
-  background:rgba(255,255,255,.18);
-  color:white;
-  padding:9px 12px;
-  margin-left:5px;
-  border-radius:20px;
+button{
   cursor:pointer;
 }
 
-nav button:hover{
+.hidden{
+  display:none!important;
+}
+
+/* HEADER */
+header{
+  background:linear-gradient(135deg,var(--pink2),var(--purple));
+  color:white;
+  padding:18px 14px;
+  position:sticky;
+  top:0;
+  z-index:50;
+  box-shadow:0 3px 15px rgba(0,0,0,.15);
+}
+
+.logo{
+  text-align:center;
+  font-size:32px;
+  font-weight:800;
+  margin-bottom:15px;
+}
+
+.logo span{
+  font-size:34px;
+}
+
+.nav{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.nav button{
+  border:0;
+  background:rgba(255,255,255,.18);
+  color:white;
+  padding:10px 17px;
+  border-radius:25px;
+  font-size:15px;
+}
+
+.nav button:hover,
+.nav button.active{
   background:white;
-  color:#e83e73;
+  color:var(--pink);
 }
 
+/* CONTAINER */
 .container{
-  max-width:1000px;
+  width:min(100%,1050px);
   margin:auto;
-  padding:20px 14px 50px;
+  padding:25px 15px 60px;
 }
 
+/* HERO */
 .hero{
   text-align:center;
-  padding:25px 10px;
+  padding:35px 10px;
 }
 
 .hero h1{
-  font-size:32px;
-  color:#df3268;
-  margin-bottom:8px;
+  color:#d92d68;
+  font-size:42px;
+  margin-bottom:10px;
 }
 
 .hero p{
-  color:#666;
+  color:#777;
+  font-size:20px;
 }
 
-.search-box{
+/* CARD */
+.card{
   background:white;
-  padding:16px;
-  border-radius:18px;
-  box-shadow:0 3px 15px rgba(0,0,0,.08);
-  margin:15px 0 25px;
+  border-radius:24px;
+  padding:22px;
+  margin:18px 0;
+  box-shadow:0 7px 30px rgba(0,0,0,.07);
+  border:1px solid #f1e5ea;
 }
 
+.card h2{
+  margin-bottom:18px;
+}
+
+/* FORMS */
+.form-group{
+  margin-bottom:15px;
+}
+
+.form-group label{
+  display:block;
+  font-weight:700;
+  margin-bottom:7px;
+}
+
+input,
+select,
+textarea{
+  width:100%;
+  border:2px solid var(--border);
+  border-radius:14px;
+  padding:13px 14px;
+  font-size:16px;
+  outline:none;
+  background:white;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:var(--pink);
+}
+
+textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+.btn{
+  border:0;
+  border-radius:14px;
+  padding:13px 20px;
+  font-size:16px;
+  font-weight:700;
+  margin:4px;
+}
+
+.btn-primary{
+  background:linear-gradient(135deg,var(--pink),var(--purple));
+  color:white;
+}
+
+.btn-secondary{
+  background:#f1edf0;
+  color:#333;
+}
+
+.btn-green{
+  background:var(--green);
+  color:white;
+}
+
+.btn-red{
+  background:var(--red);
+  color:white;
+}
+
+.btn-outline{
+  background:white;
+  border:2px solid var(--pink);
+  color:var(--pink);
+}
+
+.full{
+  width:100%;
+}
+
+/* SEARCH */
 .search-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:10px;
 }
 
-input,select,textarea{
-  width:100%;
-  padding:12px;
-  border:1px solid #ddd;
-  border-radius:10px;
-  font-size:15px;
-  outline:none;
+.search-buttons{
+  margin-top:10px;
 }
 
-textarea{
-  min-height:90px;
-  resize:vertical;
-}
-
-input:focus,select:focus,textarea:focus{
-  border-color:#e84375;
-}
-
-.primary{
-  background:#e84375;
-  color:white;
-  border:0;
-  padding:12px 18px;
-  border-radius:10px;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-.primary:hover{
-  background:#d72f62;
-}
-
-.secondary{
-  background:#eee;
-  color:#333;
-  border:0;
-  padding:12px 18px;
-  border-radius:10px;
-  cursor:pointer;
-}
-
+/* PROFILE GRID */
 .profile-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:18px;
 }
 
-.card{
+.profile-card{
   background:white;
-  border-radius:18px;
+  border-radius:22px;
   overflow:hidden;
-  box-shadow:0 4px 15px rgba(0,0,0,.1);
-  transition:.2s;
+  border:1px solid #eee;
+  box-shadow:0 5px 22px rgba(0,0,0,.08);
 }
 
-.card:hover{
-  transform:translateY(-3px);
-}
-
-.photo{
+.profile-photo{
   width:100%;
-  height:230px;
+  height:270px;
   object-fit:cover;
-  background:#eee;
+  display:block;
+  background:#f2edf0;
 }
 
-.card-body{
-  padding:15px;
+.profile-info{
+  padding:16px;
 }
 
-.card h3{
+.profile-name{
+  font-size:22px;
+  font-weight:800;
   margin-bottom:5px;
 }
 
-.info{
+.profile-meta{
   color:#777;
   font-size:14px;
   margin:5px 0;
 }
 
 .bio{
-  color:#555;
-  font-size:14px;
   margin:10px 0;
-  min-height:40px;
+  color:#555;
+  line-height:1.5;
 }
 
-.actions{
+.profile-actions{
   display:flex;
-  gap:8px;
+  gap:6px;
 }
 
-.like-btn{
+.profile-actions button{
   flex:1;
-  border:0;
-  padding:10px;
-  border-radius:10px;
-  cursor:pointer;
-  background:#ffe3ec;
-  color:#e32d68;
-  font-weight:bold;
 }
 
-.like-btn.liked{
-  background:#e84375;
-  color:white;
+/* AVATAR */
+.avatar{
+  width:150px;
+  height:150px;
+  object-fit:cover;
+  border-radius:50%;
+  display:block;
+  margin:10px auto 18px;
+  border:5px solid #ffe0ea;
+  background:#eee;
 }
 
-.match-box{
-  background:linear-gradient(135deg,#ff4f81,#9b59b6);
-  color:white;
-  padding:20px;
-  border-radius:18px;
-  margin-bottom:20px;
-}
-
-.match-list{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-}
-
-.match-card{
-  background:white;
-  color:#333;
-  padding:12px;
-  border-radius:15px;
-  text-align:center;
-}
-
-.match-card img{
-  width:80px;
-  height:80px;
+.avatar-small{
+  width:50px;
+  height:50px;
   border-radius:50%;
   object-fit:cover;
 }
 
-.form-card{
-  background:white;
-  padding:20px;
-  border-radius:18px;
-  box-shadow:0 3px 15px rgba(0,0,0,.08);
-  max-width:650px;
-  margin:auto;
+/* LOGIN */
+.auth-box{
+  max-width:480px;
+  margin:35px auto;
 }
 
-.form-group{
-  margin-bottom:14px;
+.auth-title{
+  text-align:center;
+  color:var(--pink);
+  font-size:32px;
+  margin-bottom:20px;
 }
 
-.form-group label{
-  display:block;
-  font-weight:bold;
-  margin-bottom:6px;
-}
-
-.form-buttons{
-  display:flex;
-  gap:10px;
+.auth-switch{
+  text-align:center;
   margin-top:15px;
+  color:#666;
 }
 
+.auth-switch button{
+  border:0;
+  background:none;
+  color:var(--pink);
+  font-weight:bold;
+}
+
+/* PROFILE */
+.my-profile{
+  text-align:center;
+}
+
+.info-list{
+  text-align:left;
+  margin-top:20px;
+}
+
+.info-row{
+  padding:12px 0;
+  border-bottom:1px solid #eee;
+}
+
+.info-row strong{
+  display:inline-block;
+  width:100px;
+}
+
+/* MATCH */
+.match-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.match-card{
+  background:white;
+  padding:15px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 4px 20px rgba(0,0,0,.07);
+}
+
+.match-card img{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  object-fit:cover;
+  margin-bottom:10px;
+}
+
+/* EMPTY */
 .empty{
   text-align:center;
-  padding:35px 10px;
+  padding:35px 15px;
   color:#777;
-  background:white;
-  border-radius:15px;
 }
 
+.empty-icon{
+  font-size:50px;
+  margin-bottom:10px;
+}
+
+/* TOAST */
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:25px;
+  transform:translateX(-50%);
+  background:#222;
+  color:white;
+  padding:13px 20px;
+  border-radius:30px;
+  z-index:999;
+  display:none;
+  max-width:90%;
+  text-align:center;
+}
+
+.toast.show{
+  display:block;
+}
+
+/* FOOTER */
 footer{
   text-align:center;
-  padding:25px;
-  color:#777;
-  font-size:13px;
+  color:#888;
+  padding:30px 10px;
 }
 
-.hidden{
-  display:none;
-}
-
-@media(max-width:750px){
-  .search-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
+/* RESPONSIVE */
+@media(max-width:800px){
   .profile-grid{
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:repeat(2,1fr);
   }
 
-  .match-list{
-    grid-template-columns:1fr 1fr;
+  .match-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .search-grid{
+    grid-template-columns:repeat(2,1fr);
   }
 }
 
-@media(max-width:500px){
-  .header{
-    flex-direction:column;
-    gap:12px;
-  }
-
-  nav button{
-    padding:8px 9px;
-    font-size:12px;
-  }
-
-  .hero h1{
+@media(max-width:560px){
+  .logo{
     font-size:27px;
   }
 
-  .profile-grid{
-    grid-template-columns:1fr;
+  .hero h1{
+    font-size:34px;
   }
 
-  .match-list{
+  .hero p{
+    font-size:17px;
+  }
+
+  .profile-grid,
+  .match-grid{
     grid-template-columns:1fr;
   }
 
   .search-grid{
     grid-template-columns:1fr;
+  }
+
+  .nav button{
+    padding:9px 12px;
+    font-size:14px;
+  }
+
+  .profile-photo{
+    height:320px;
   }
 }
 </style>
@@ -319,476 +447,1191 @@ footer{
 <body>
 
 <header>
-  <div class="header">
-    <div class="logo">💖 Amit Match</div>
+  <div class="logo">💖 Amit Match</div>
 
-    <nav>
-      <button onclick="showPage('home')">Home</button>
-      <button onclick="showPage('profile')">My Profile</button>
-      <button onclick="showPage('matches')">Matches</button>
-    </nav>
+  <div class="nav" id="navigation">
+    <button onclick="showPage('home')" id="navHome">Home</button>
+    <button onclick="showPage('search')" id="navSearch">🔎 Search</button>
+    <button onclick="showPage('profile')" id="navProfile">👤 My Profile</button>
+    <button onclick="showPage('matches')" id="navMatches">💕 Matches</button>
+    <button onclick="logout()" id="logoutBtn" class="hidden">Logout</button>
   </div>
 </header>
 
+<main class="container">
+
+<!-- LOGIN -->
+<section id="loginPage" class="page">
+  <div class="auth-box card">
+
+    <div class="auth-title">🔐 Login</div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input id="loginEmail" type="email" placeholder="আপনার email">
+    </div>
+
+    <div class="form-group">
+      <label>Password</label>
+      <input id="loginPassword" type="password" placeholder="Password">
+    </div>
+
+    <button class="btn btn-primary full" onclick="login()">
+      Login
+    </button>
+
+    <div class="auth-switch">
+      Account নেই?
+      <button onclick="showPage('register')">Register করুন</button>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- REGISTER -->
+<section id="registerPage" class="page hidden">
+  <div class="auth-box card">
+
+    <div class="auth-title">📝 Create Account</div>
+
+    <div class="form-group">
+      <label>Full Name</label>
+      <input id="regName" type="text" placeholder="আপনার নাম">
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input id="regEmail" type="email" placeholder="example@gmail.com">
+    </div>
+
+    <div class="form-group">
+      <label>Password</label>
+      <input id="regPassword" type="password" placeholder="কমপক্ষে ৬ অক্ষর">
+    </div>
+
+    <div class="form-group">
+      <label>Age</label>
+      <input id="regAge" type="number" min="18" max="100" placeholder="বয়স">
+    </div>
+
+    <div class="form-group">
+      <label>Gender</label>
+      <select id="regGender">
+        <option value="">Gender নির্বাচন করুন</option>
+        <option value="Male">পুরুষ</option>
+        <option value="Female">মহিলা</option>
+        <option value="Other">অন্যান্য</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>City</label>
+      <input id="regCity" type="text" placeholder="শহর">
+    </div>
+
+    <div class="form-group">
+      <label>About You</label>
+      <textarea id="regBio" placeholder="নিজের সম্পর্কে কিছু লিখুন"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Profile Photo</label>
+      <input id="regPhoto" type="file" accept="image/*">
+    </div>
+
+    <button class="btn btn-primary full" onclick="register()">
+      Create Account
+    </button>
+
+    <div class="auth-switch">
+      আগে থেকেই account আছে?
+      <button onclick="showPage('login')">Login করুন</button>
+    </div>
+
+  </div>
+</section>
+
 
 <!-- HOME -->
-<section id="home" class="page">
-<div class="container">
+<section id="homePage" class="page hidden">
 
   <div class="hero">
     <h1>Find Your Match 💕</h1>
     <p>আপনার পছন্দের মানুষের সাথে পরিচিত হন</p>
   </div>
 
-  <div class="search-box">
-    <h3 style="margin-bottom:12px;">🔎 Search Profiles</h3>
+  <div class="card">
+    <h2>❤️ Welcome to Amit Match</h2>
 
-    <div class="search-grid">
+    <p style="line-height:1.7;color:#666;">
+      আপনার profile তৈরি করুন, অন্যদের profile দেখুন,
+      পছন্দ হলে Like করুন। দুজনেই একে অপরকে Like করলে
+      Match তৈরি হবে।
+    </p>
 
-      <input
-        type="text"
-        id="searchName"
-        placeholder="নাম খুঁজুন"
-        oninput="renderProfiles()">
+    <br>
 
-      <select id="searchGender" onchange="renderProfiles()">
-        <option value="">সব Gender</option>
-        <option value="Male">পুরুষ</option>
-        <option value="Female">মহিলা</option>
-      </select>
+    <button class="btn btn-primary" onclick="showPage('search')">
+      🔎 Search Profiles
+    </button>
 
-      <input
-        type="number"
-        id="searchAge"
-        placeholder="সর্বোচ্চ বয়স"
-        oninput="renderProfiles()">
-
-      <input
-        type="text"
-        id="searchCity"
-        placeholder="শহর"
-        oninput="renderProfiles">
-
-    </div>
-
-    <button class="secondary" style="margin-top:10px;" onclick="clearSearch()">
-      Clear Search
+    <button class="btn btn-outline" onclick="showPage('profile')">
+      👤 My Profile
     </button>
   </div>
 
-  <div id="profiles" class="profile-grid"></div>
+  <div class="card">
+    <h2>✨ কিছু Profile</h2>
+    <div id="homeProfiles" class="profile-grid"></div>
+  </div>
 
-</div>
 </section>
 
 
-<!-- PROFILE -->
-<section id="profile" class="page hidden">
-<div class="container">
+<!-- SEARCH -->
+<section id="searchPage" class="page hidden">
 
   <div class="hero">
-    <h1>👤 My Profile</h1>
-    <p>আপনার নিজের profile তৈরি করুন</p>
+    <h1>🔎 Search Profiles</h1>
+    <p>আপনার পছন্দের মানুষ খুঁজুন</p>
   </div>
 
-  <div class="form-card">
+  <div class="card">
+
+    <div class="search-grid">
+
+      <input id="searchName"
+             type="text"
+             placeholder="নাম খুঁজুন">
+
+      <select id="searchGender">
+        <option value="">সব Gender</option>
+        <option value="Male">পুরুষ</option>
+        <option value="Female">মহিলা</option>
+        <option value="Other">অন্যান্য</option>
+      </select>
+
+      <input id="searchAge"
+             type="number"
+             min="18"
+             placeholder="সর্বোচ্চ বয়স">
+
+      <input id="searchCity"
+             type="text"
+             placeholder="শহর">
+
+    </div>
+
+    <div class="search-buttons">
+
+      <button class="btn btn-primary"
+              onclick="searchProfiles()">
+        🔎 Search
+      </button>
+
+      <button class="btn btn-secondary"
+              onclick="clearSearch()">
+        Clear Search
+      </button>
+
+    </div>
+
+  </div>
+
+  <div id="searchResults" class="profile-grid"></div>
+
+</section>
+
+
+<!-- MY PROFILE -->
+<section id="profilePage" class="page hidden">
+
+  <div class="card my-profile">
+
+    <h1>👤 My Profile</h1>
+
+    <img id="myPhoto"
+         class="avatar"
+         src=""
+         alt="Profile">
+
+    <h2 id="myName"></h2>
+
+    <p id="myEmail" style="color:#777"></p>
+
+    <div class="info-list">
+
+      <div class="info-row">
+        <strong>Age:</strong>
+        <span id="myAge"></span>
+      </div>
+
+      <div class="info-row">
+        <strong>Gender:</strong>
+        <span id="myGender"></span>
+      </div>
+
+      <div class="info-row">
+        <strong>City:</strong>
+        <span id="myCity"></span>
+      </div>
+
+      <div class="info-row">
+        <strong>About:</strong>
+        <span id="myBio"></span>
+      </div>
+
+    </div>
+
+    <br>
+
+    <button class="btn btn-primary"
+            onclick="openEditProfile()">
+      ✏️ Edit Profile
+    </button>
+
+    <button class="btn btn-red"
+            onclick="deleteAccount()">
+      🗑️ Delete Account
+    </button>
+
+  </div>
+
+
+  <!-- EDIT PROFILE -->
+  <div id="editProfileBox" class="card hidden">
+
+    <h2>✏️ Edit Profile</h2>
 
     <div class="form-group">
-      <label>আপনার নাম</label>
-      <input id="myName" type="text" placeholder="যেমন: Rahul">
+      <label>Name</label>
+      <input id="editName">
     </div>
 
     <div class="form-group">
-      <label>বয়স</label>
-      <input id="myAge" type="number" min="18" placeholder="১৮+">
+      <label>Age</label>
+      <input id="editAge" type="number" min="18">
     </div>
 
     <div class="form-group">
       <label>Gender</label>
-      <select id="myGender">
-        <option value="">Select</option>
+      <select id="editGender">
         <option value="Male">পুরুষ</option>
         <option value="Female">মহিলা</option>
+        <option value="Other">অন্যান্য</option>
       </select>
     </div>
 
     <div class="form-group">
-      <label>শহর</label>
-      <input id="myCity" type="text" placeholder="যেমন: Kolkata">
+      <label>City</label>
+      <input id="editCity">
     </div>
 
     <div class="form-group">
-      <label>Profile Photo URL</label>
-      <input
-        id="myPhoto"
-        type="url"
-        placeholder="https://example.com/photo.jpg">
+      <label>About</label>
+      <textarea id="editBio"></textarea>
     </div>
 
     <div class="form-group">
-      <label>নিজের সম্পর্কে</label>
-      <textarea
-        id="myBio"
-        placeholder="নিজের সম্পর্কে কিছু লিখুন..."></textarea>
+      <label>Change Photo</label>
+      <input id="editPhoto" type="file" accept="image/*">
     </div>
 
-    <div class="form-buttons">
-      <button class="primary" onclick="saveProfile()">
-        💾 Save Profile
-      </button>
+    <button class="btn btn-green"
+            onclick="saveProfile()">
+      💾 Save
+    </button>
 
-      <button class="secondary" onclick="loadMyProfile()">
-        Reset
-      </button>
-    </div>
-
-    <p id="saveMessage"
-       style="margin-top:15px;color:#e84375;font-weight:bold;"></p>
+    <button class="btn btn-secondary"
+            onclick="closeEditProfile()">
+      Cancel
+    </button>
 
   </div>
 
-</div>
 </section>
 
 
 <!-- MATCHES -->
-<section id="matches" class="page hidden">
-<div class="container">
+<section id="matchesPage" class="page hidden">
 
   <div class="hero">
-    <h1>💕 My Matches</h1>
-    <p>যারা আপনাকে Like করেছে এবং যাদের আপনি Like করেছেন</p>
+    <h1>💕 Your Matches</h1>
+    <p>যাদের সাথে আপনার Mutual Like হয়েছে</p>
   </div>
 
-  <div class="match-box">
-    <h2>❤️ Your Matches</h2>
-    <p style="margin-top:7px;">
-      দুইজন একে অপরকে Like করলে Match হবে।
-    </p>
-  </div>
+  <div id="matchesResults" class="match-grid"></div>
 
-  <div id="matchesList" class="match-list"></div>
-
-</div>
 </section>
 
+</main>
 
 <footer>
-  © 2026 Amit Match • Connect with people respectfully ❤️
+  <p>💖 Amit Match</p>
+  <p>Find • Like • Match</p>
 </footer>
+
+<div id="toast" class="toast"></div>
 
 
 <script>
 
-/* =========================
-   SAMPLE PROFILES
-========================= */
+/* =====================================================
+   AMIT MATCH
+   LocalStorage Dating App
+   ===================================================== */
 
-const sampleProfiles = [
-  {
-    id:1,
-    name:"Priya",
-    age:24,
-    gender:"Female",
-    city:"Kolkata",
-    photo:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600",
-    bio:"ভ্রমণ, গান এবং নতুন মানুষের সাথে পরিচিত হতে ভালোবাসি।"
-  },
-  {
-    id:2,
-    name:"Riya",
-    age:27,
-    gender:"Female",
-    city:"Bardhaman",
-    photo:"https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600",
-    bio:"Coffee lover ☕ এবং nature lover."
-  },
-  {
-    id:3,
-    name:"Arjun",
-    age:26,
-    gender:"Male",
-    city:"Kolkata",
-    photo:"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600",
-    bio:"Photography এবং travelling আমার hobby."
-  },
-  {
-    id:4,
-    name:"Rahul",
-    age:29,
-    gender:"Male",
-    city:"Howrah",
-    photo:"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600",
-    bio:"Music, movies এবং travelling পছন্দ করি।"
-  },
-  {
-    id:5,
-    name:"Sneha",
-    age:25,
-    gender:"Female",
-    city:"Durgapur",
-    photo:"https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=600",
-    bio:"Simple person. Love nature and books."
-  },
-  {
-    id:6,
-    name:"Amit",
-    age:30,
-    gender:"Male",
-    city:"Kolkata",
-    photo:"https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?w=600",
-    bio:"Technology এবং travelling ভালোবাসি।"
-  }
-];
+const USERS_KEY = "amitMatchUsers";
+const CURRENT_KEY = "amitMatchCurrentUser";
+
+let users = JSON.parse(localStorage.getItem(USERS_KEY) || "[]");
+let currentUserId = localStorage.getItem(CURRENT_KEY);
 
 
-/* =========================
-   STORAGE
-========================= */
+/* =====================================================
+   DEFAULT DEMO USERS
+   ===================================================== */
 
-let profiles =
-  JSON.parse(localStorage.getItem("amitProfiles")) || sampleProfiles;
+function createDemoUsers(){
 
-let myProfile =
-  JSON.parse(localStorage.getItem("amitMyProfile")) || null;
+  if(users.length > 0) return;
 
-let liked =
-  JSON.parse(localStorage.getItem("amitLiked")) || [];
+  users = [
 
+    {
+      id: crypto.randomUUID(),
+      name:"Priya",
+      email:"priya@amitmatch.demo",
+      password:"123456",
+      age:24,
+      gender:"Female",
+      city:"Kolkata",
+      bio:"ভালো মানুষদের সাথে পরিচিত হতে চাই ❤️",
+      photo:createAvatar("Priya"),
+      likes:[]
+    },
 
-/* =========================
-   PAGE SWITCH
-========================= */
+    {
+      id: crypto.randomUUID(),
+      name:"Rahul",
+      email:"rahul@amitmatch.demo",
+      password:"123456",
+      age:28,
+      gender:"Male",
+      city:"Bardhaman",
+      bio:"Travel, music এবং নতুন মানুষের সাথে পরিচিত হতে ভালোবাসি।",
+      photo:createAvatar("Rahul"),
+      likes:[]
+    },
 
-function showPage(page){
+    {
+      id: crypto.randomUUID(),
+      name:"Moumita",
+      email:"moumita@amitmatch.demo",
+      password:"123456",
+      age:26,
+      gender:"Female",
+      city:"Durgapur",
+      bio:"Simple life, happy life 💕",
+      photo:createAvatar("Moumita"),
+      likes:[]
+    }
 
-  document.querySelectorAll(".page").forEach(p=>{
-    p.classList.add("hidden");
-  });
+  ];
 
-  document.getElementById(page).classList.remove("hidden");
+  saveUsers();
+}
 
-  if(page === "home"){
-    renderProfiles();
-  }
+function createAvatar(name){
 
-  if(page === "matches"){
-    renderMatches();
-  }
+  const letter = name.charAt(0).toUpperCase();
 
-  if(page === "profile"){
-    loadMyProfile();
-  }
+  const svg = `
+  <svg xmlns="http://www.w3.org/2000/svg"
+       width="500"
+       height="500">
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+    <rect width="100%" height="100%"
+          fill="#f8d7e3"/>
+
+    <circle cx="250"
+            cy="190"
+            r="100"
+            fill="#ffffff"/>
+
+    <circle cx="250"
+            cy="430"
+            r="170"
+            fill="#ffffff"/>
+
+    <text x="250"
+          y="275"
+          text-anchor="middle"
+          font-size="100"
+          font-family="Arial"
+          fill="#e91e63">
+      ${letter}
+    </text>
+
+  </svg>`;
+
+  return "data:image/svg+xml;charset=UTF-8," +
+         encodeURIComponent(svg);
 }
 
 
-/* =========================
-   RENDER PROFILES
-========================= */
+/* =====================================================
+   STORAGE
+   ===================================================== */
 
-function renderProfiles(){
+function saveUsers(){
+  localStorage.setItem(
+    USERS_KEY,
+    JSON.stringify(users)
+  );
+}
 
-  const container =
-    document.getElementById("profiles");
+function getCurrentUser(){
+
+  if(!currentUserId) return null;
+
+  return users.find(
+    u => u.id === currentUserId
+  ) || null;
+}
+
+
+/* =====================================================
+   PAGE SYSTEM
+   ===================================================== */
+
+function hideAllPages(){
+
+  document.querySelectorAll(".page")
+    .forEach(page => page.classList.add("hidden"));
+}
+
+function showPage(page){
+
+  hideAllPages();
+
+  if(page === "login"){
+    document.getElementById("loginPage")
+      .classList.remove("hidden");
+    updateNavigation();
+    return;
+  }
+
+  if(page === "register"){
+    document.getElementById("registerPage")
+      .classList.remove("hidden");
+    updateNavigation();
+    return;
+  }
+
+  if(!getCurrentUser()){
+
+    showToast("আগে Login করুন");
+
+    document.getElementById("loginPage")
+      .classList.remove("hidden");
+
+    return;
+  }
+
+  if(page === "home"){
+
+    document.getElementById("homePage")
+      .classList.remove("hidden");
+
+    renderHomeProfiles();
+
+  }
+
+  if(page === "search"){
+
+    document.getElementById("searchPage")
+      .classList.remove("hidden");
+
+    searchProfiles();
+
+  }
+
+  if(page === "profile"){
+
+    document.getElementById("profilePage")
+      .classList.remove("hidden");
+
+    renderMyProfile();
+
+  }
+
+  if(page === "matches"){
+
+    document.getElementById("matchesPage")
+      .classList.remove("hidden");
+
+    renderMatches();
+
+  }
+
+  updateNavigation();
+}
+
+
+/* =====================================================
+   NAVIGATION
+   ===================================================== */
+
+function updateNavigation(){
+
+  const loggedIn = !!getCurrentUser();
+
+  document
+    .getElementById("logoutBtn")
+    .classList.toggle("hidden",!loggedIn);
+
+  document
+    .getElementById("navProfile")
+    .classList.toggle("hidden",!loggedIn);
+
+  document
+    .getElementById("navMatches")
+    .classList.toggle("hidden",!loggedIn);
+
+  document
+    .getElementById("navSearch")
+    .classList.toggle("hidden",!loggedIn);
+}
+
+
+/* =====================================================
+   REGISTER
+   ===================================================== */
+
+function register(){
 
   const name =
-    document.getElementById("searchName").value
-    .toLowerCase();
+    document.getElementById("regName")
+      .value.trim();
 
-  const gender =
-    document.getElementById("searchGender").value;
+  const email =
+    document.getElementById("regEmail")
+      .value.trim().toLowerCase();
+
+  const password =
+    document.getElementById("regPassword")
+      .value;
 
   const age =
-    document.getElementById("searchAge").value;
+    Number(document.getElementById("regAge")
+      .value);
+
+  const gender =
+    document.getElementById("regGender")
+      .value;
 
   const city =
-    document.getElementById("searchCity").value
-    .toLowerCase();
+    document.getElementById("regCity")
+      .value.trim();
 
-  let results = profiles.filter(p=>{
+  const bio =
+    document.getElementById("regBio")
+      .value.trim();
 
-    const nameOK =
-      p.name.toLowerCase().includes(name);
+  const photoInput =
+    document.getElementById("regPhoto");
 
-    const genderOK =
-      !gender || p.gender === gender;
 
-    const ageOK =
-      !age || p.age <= Number(age);
+  if(!name ||
+     !email ||
+     !password ||
+     !age ||
+     !gender ||
+     !city){
 
-    const cityOK =
-      !city || p.city.toLowerCase().includes(city);
+    showToast("সব প্রয়োজনীয় তথ্য পূরণ করুন");
+    return;
+  }
 
-    return nameOK && genderOK && ageOK && cityOK;
-  });
+
+  if(age < 18){
+
+    showToast("১৮ বছরের কম বয়সী ব্যবহারকারী গ্রহণযোগ্য নয়");
+    return;
+  }
+
+
+  if(password.length < 6){
+
+    showToast("Password কমপক্ষে ৬ অক্ষরের হতে হবে");
+    return;
+  }
+
+
+  if(users.some(u => u.email === email)){
+
+    showToast("এই Email দিয়ে Account আছে");
+    return;
+  }
+
+
+  function finishRegistration(photo){
+
+    const newUser = {
+
+      id:crypto.randomUUID(),
+
+      name:name,
+
+      email:email,
+
+      password:password,
+
+      age:age,
+
+      gender:gender,
+
+      city:city,
+
+      bio:bio,
+
+      photo:photo || createAvatar(name),
+
+      likes:[]
+
+    };
+
+    users.push(newUser);
+
+    saveUsers();
+
+    currentUserId = newUser.id;
+
+    localStorage.setItem(
+      CURRENT_KEY,
+      currentUserId
+    );
+
+    showToast("Account তৈরি হয়েছে ❤️");
+
+    clearRegisterForm();
+
+    showPage("home");
+  }
+
+
+  if(photoInput.files.length > 0){
+
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+
+      finishRegistration(
+        e.target.result
+      );
+
+    };
+
+    reader.readAsDataURL(
+      photoInput.files[0]
+    );
+
+  }else{
+
+    finishRegistration(null);
+
+  }
+}
+
+
+/* =====================================================
+   LOGIN
+   ===================================================== */
+
+function login(){
+
+  const email =
+    document.getElementById("loginEmail")
+      .value.trim().toLowerCase();
+
+  const password =
+    document.getElementById("loginPassword")
+      .value;
+
+
+  const user = users.find(
+    u =>
+      u.email === email &&
+      u.password === password
+  );
+
+
+  if(!user){
+
+    showToast("Email অথবা Password ভুল");
+    return;
+  }
+
+
+  currentUserId = user.id;
+
+  localStorage.setItem(
+    CURRENT_KEY,
+    currentUserId
+  );
+
+
+  document.getElementById("loginEmail").value="";
+  document.getElementById("loginPassword").value="";
+
+
+  showToast("Login successful ❤️");
+
+  showPage("home");
+}
+
+
+/* =====================================================
+   LOGOUT
+   ===================================================== */
+
+function logout(){
+
+  currentUserId = null;
+
+  localStorage.removeItem(
+    CURRENT_KEY
+  );
+
+  showToast("Logout হয়েছে");
+
+  showPage("login");
+}
+
+
+/* =====================================================
+   HOME PROFILES
+   ===================================================== */
+
+function renderHomeProfiles(){
+
+  const box =
+    document.getElementById("homeProfiles");
+
+  const current =
+    getCurrentUser();
+
+  const list =
+    users
+      .filter(u => u.id !== current.id)
+      .slice(0,6);
+
+  if(list.length === 0){
+
+    box.innerHTML = `
+      <div class="empty">
+        <div class="empty-icon">👥</div>
+        <p>এখনও অন্য কোনো Profile নেই।</p>
+      </div>
+    `;
+
+    return;
+  }
+
+  box.innerHTML =
+    list.map(
+      user => profileCardHTML(user)
+    ).join("");
+}
+
+
+/* =====================================================
+   PROFILE CARD
+   ===================================================== */
+
+function profileCardHTML(user){
+
+  const current =
+    getCurrentUser();
+
+  const liked =
+    current &&
+    current.likes &&
+    current.likes.includes(user.id);
+
+  const mutual =
+    current &&
+    isMutualMatch(user.id);
+
+
+  return `
+
+    <div class="profile-card">
+
+      <img
+        class="profile-photo"
+        src="${user.photo}"
+        alt="${escapeHTML(user.name)}">
+
+      <div class="profile-info">
+
+        <div class="profile-name">
+          ${escapeHTML(user.name)}
+          ${mutual ? " 💕" : ""}
+        </div>
+
+        <div class="profile-meta">
+          🎂 ${user.age} বছর
+          • ${genderText(user.gender)}
+        </div>
+
+        <div class="profile-meta">
+          📍 ${escapeHTML(user.city)}
+        </div>
+
+        <div class="bio">
+          ${escapeHTML(user.bio || "কোনো Bio দেওয়া হয়নি।")}
+        </div>
+
+        <div class="profile-actions">
+
+          <button
+            class="btn ${liked ? "btn-secondary" : "btn-primary"}"
+            onclick="toggleLike('${user.id}')">
+
+            ${liked ? "💗 Liked" : "❤️ Like"}
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+  `;
+}
+
+
+/* =====================================================
+   SEARCH
+   ===================================================== */
+
+function searchProfiles(){
+
+  const current =
+    getCurrentUser();
+
+  if(!current) return;
+
+
+  const name =
+    document.getElementById("searchName")
+      .value.trim().toLowerCase();
+
+  const gender =
+    document.getElementById("searchGender")
+      .value;
+
+  const age =
+    Number(
+      document.getElementById("searchAge")
+        .value
+    ) || 0;
+
+  const city =
+    document.getElementById("searchCity")
+      .value.trim().toLowerCase();
+
+
+  const results =
+    users.filter(user => {
+
+      if(user.id === current.id)
+        return false;
+
+      if(
+        name &&
+        !user.name.toLowerCase()
+          .includes(name)
+      )
+        return false;
+
+      if(
+        gender &&
+        user.gender !== gender
+      )
+        return false;
+
+      if(
+        age &&
+        user.age > age
+      )
+        return false;
+
+      if(
+        city &&
+        !user.city.toLowerCase()
+          .includes(city)
+      )
+        return false;
+
+      return true;
+
+    });
+
+
+  const box =
+    document.getElementById("searchResults");
 
 
   if(results.length === 0){
 
-    container.innerHTML = `
-      <div class="empty" style="grid-column:1/-1;">
-        😔 কোনো profile পাওয়া যায়নি।
+    box.innerHTML = `
+
+      <div class="empty">
+
+        <div class="empty-icon">
+          🔍
+        </div>
+
+        <h3>কোনো Profile পাওয়া যায়নি</h3>
+
+        <p>
+          Search criteria পরিবর্তন করে আবার চেষ্টা করুন।
+        </p>
+
       </div>
+
     `;
 
     return;
   }
 
 
-  container.innerHTML = results.map(p=>{
-
-    const isLiked = liked.includes(p.id);
-
-    return `
-      <div class="card">
-
-        <img
-          class="photo"
-          src="${p.photo}"
-          alt="${escapeHTML(p.name)}"
-          onerror="this.src='https://via.placeholder.com/600x400?text=Amit+Match'">
-
-        <div class="card-body">
-
-          <h3>
-            ${escapeHTML(p.name)}, ${p.age}
-          </h3>
-
-          <div class="info">
-            📍 ${escapeHTML(p.city)}
-          </div>
-
-          <div class="info">
-            ${p.gender === "Male" ? "👨 পুরুষ" : "👩 মহিলা"}
-          </div>
-
-          <div class="bio">
-            ${escapeHTML(p.bio)}
-          </div>
-
-          <div class="actions">
-
-            <button
-              class="like-btn ${isLiked ? "liked" : ""}"
-              onclick="toggleLike(${p.id})">
-
-              ${isLiked ? "❤️ Liked" : "♡ Like"}
-
-            </button>
-
-          </div>
-
-        </div>
-      </div>
-    `;
-
-  }).join("");
+  box.innerHTML =
+    results.map(
+      user => profileCardHTML(user)
+    ).join("");
 }
 
 
-/* =========================
+/* =====================================================
+   CLEAR SEARCH
+   ===================================================== */
+
+function clearSearch(){
+
+  document.getElementById("searchName").value="";
+  document.getElementById("searchGender").value="";
+  document.getElementById("searchAge").value="";
+  document.getElementById("searchCity").value="";
+
+  searchProfiles();
+}
+
+
+/* =====================================================
    LIKE SYSTEM
-========================= */
+   ===================================================== */
 
-function toggleLike(id){
+function toggleLike(targetId){
 
-  if(!myProfile){
+  const current =
+    getCurrentUser();
 
-    alert("আগে My Profile তৈরি করুন।");
+  if(!current){
 
-    showPage("profile");
-
+    showToast("আগে Login করুন");
     return;
   }
 
 
-  if(liked.includes(id)){
+  if(!current.likes)
+    current.likes=[];
 
-    liked =
-      liked.filter(x=>x !== id);
+
+  const index =
+    current.likes.indexOf(targetId);
+
+
+  if(index >= 0){
+
+    current.likes.splice(index,1);
+
+    showToast("Like remove হয়েছে");
 
   }else{
 
-    liked.push(id);
+    current.likes.push(targetId);
 
-    alert("❤️ Like করা হয়েছে!");
+    const target =
+      users.find(
+        u => u.id === targetId
+      );
+
+    if(
+      target &&
+      target.likes &&
+      target.likes.includes(current.id)
+    ){
+
+      showToast("💕 It's a Match!");
+
+    }else{
+
+      showToast("❤️ Like দেওয়া হয়েছে");
+
+    }
 
   }
 
 
-  localStorage.setItem(
-    "amitLiked",
-    JSON.stringify(liked)
-  );
+  saveUsers();
 
-  renderProfiles();
+
+  /* Refresh current screen */
+
+  if(
+    !document
+      .getElementById("searchPage")
+      .classList.contains("hidden")
+  ){
+
+    searchProfiles();
+
+  }
+
+  if(
+    !document
+      .getElementById("homePage")
+      .classList.contains("hidden")
+  ){
+
+    renderHomeProfiles();
+
+  }
+
+  renderMatches();
 }
 
 
-/* =========================
-   MATCH SYSTEM
-========================= */
+/* =====================================================
+   MUTUAL MATCH
+   ===================================================== */
+
+function isMutualMatch(targetId){
+
+  const current =
+    getCurrentUser();
+
+  if(!current)
+    return false;
+
+
+  const target =
+    users.find(
+      u => u.id === targetId
+    );
+
+  if(!target)
+    return false;
+
+
+  return (
+    current.likes &&
+    current.likes.includes(targetId) &&
+    target.likes &&
+    target.likes.includes(current.id)
+  );
+}
+
+
+function getMatches(){
+
+  const current =
+    getCurrentUser();
+
+  if(!current)
+    return [];
+
+
+  return users.filter(user =>
+    user.id !== current.id &&
+    isMutualMatch(user.id)
+  );
+}
+
+
+/* =====================================================
+   MATCH PAGE
+   ===================================================== */
 
 function renderMatches(){
 
-  const container =
-    document.getElementById("matchesList");
-
-  /*
-    Demo system:
-    আপনি যাদের Like করেছেন,
-    তাদেরকে Match হিসেবে দেখানো হচ্ছে।
-
-    Real mutual matching-এর জন্য
-    database/backend প্রয়োজন।
-  */
+  const box =
+    document.getElementById("matchesResults");
 
   const matches =
-    profiles.filter(p=>liked.includes(p.id));
+    getMatches();
 
 
   if(matches.length === 0){
 
-    container.innerHTML = `
-      <div class="empty" style="grid-column:1/-1;">
-        💔 এখনও কোনো Match নেই।
-        <br><br>
-        Home থেকে profile Like করুন।
+    box.innerHTML = `
+
+      <div class="empty">
+
+        <div class="empty-icon">
+          💕
+        </div>
+
+        <h2>No Matches Yet</h2>
+
+        <p>
+          কাউকে Like করুন। সে আপনাকেও Like করলে
+          এখানে Match দেখা যাবে।
+        </p>
+
       </div>
+
     `;
 
     return;
   }
 
 
-  container.innerHTML =
-    matches.map(p=>`
+  box.innerHTML =
+    matches.map(user => `
 
       <div class="match-card">
 
         <img
-          src="${p.photo}"
-          onerror="this.src='https://via.placeholder.com/100'">
+          src="${user.photo}"
+          alt="${escapeHTML(user.name)}">
 
-        <h3 style="margin-top:8px;">
-          ${escapeHTML(p.name)}
-        </h3>
+        <h2>
+          ${escapeHTML(user.name)}
+        </h2>
 
         <p>
-          ${p.age} বছর • ${escapeHTML(p.city)}
+          🎂 ${user.age} বছর
+        </p>
+
+        <p>
+          📍 ${escapeHTML(user.city)}
+        </p>
+
+        <p style="margin:10px 0;color:#e91e63;">
+          💕 Mutual Match
         </p>
 
         <button
-          class="primary"
-          style="margin-top:10px;"
-          onclick="startChat('${escapeHTML(p.name)}')">
+          class="btn btn-secondary"
+          onclick="viewMatch('${user.id}')">
 
-          💬 Message
+          👤 View Profile
 
         </button>
 
@@ -798,140 +1641,282 @@ function renderMatches(){
 }
 
 
-/* =========================
-   PROFILE SAVE
-========================= */
+/* =====================================================
+   VIEW MATCH
+   ===================================================== */
+
+function viewMatch(id){
+
+  const user =
+    users.find(
+      u => u.id === id
+    );
+
+  if(!user) return;
+
+
+  alert(
+    "Name: " + user.name +
+    "\nAge: " + user.age +
+    "\nCity: " + user.city +
+    "\n\n" + (user.bio || "")
+  );
+}
+
+
+/* =====================================================
+   MY PROFILE
+   ===================================================== */
+
+function renderMyProfile(){
+
+  const user =
+    getCurrentUser();
+
+  if(!user){
+
+    showPage("login");
+    return;
+  }
+
+
+  document.getElementById("myPhoto")
+    .src = user.photo;
+
+  document.getElementById("myName")
+    .textContent = user.name;
+
+  document.getElementById("myEmail")
+    .textContent = user.email;
+
+  document.getElementById("myAge")
+    .textContent = user.age;
+
+  document.getElementById("myGender")
+    .textContent =
+      genderText(user.gender);
+
+  document.getElementById("myCity")
+    .textContent = user.city;
+
+  document.getElementById("myBio")
+    .textContent =
+      user.bio || "কোনো Bio দেওয়া হয়নি।";
+}
+
+
+/* =====================================================
+   EDIT PROFILE
+   ===================================================== */
+
+function openEditProfile(){
+
+  const user =
+    getCurrentUser();
+
+  if(!user) return;
+
+
+  document.getElementById("editName")
+    .value = user.name;
+
+  document.getElementById("editAge")
+    .value = user.age;
+
+  document.getElementById("editGender")
+    .value = user.gender;
+
+  document.getElementById("editCity")
+    .value = user.city;
+
+  document.getElementById("editBio")
+    .value = user.bio || "";
+
+
+  document.getElementById("editProfileBox")
+    .classList.remove("hidden");
+}
+
+
+function closeEditProfile(){
+
+  document.getElementById("editProfileBox")
+    .classList.add("hidden");
+}
+
 
 function saveProfile(){
 
-  const name =
-    document.getElementById("myName").value.trim();
+  const user =
+    getCurrentUser();
 
-  const age =
-    Number(document.getElementById("myAge").value);
-
-  const gender =
-    document.getElementById("myGender").value;
-
-  const city =
-    document.getElementById("myCity").value.trim();
-
-  const photo =
-    document.getElementById("myPhoto").value.trim();
-
-  const bio =
-    document.getElementById("myBio").value.trim();
+  if(!user) return;
 
 
-  if(!name || !age || !gender || !city){
+  user.name =
+    document.getElementById("editName")
+      .value.trim();
 
-    alert("নাম, বয়স, Gender এবং শহর দিন।");
+  user.age =
+    Number(
+      document.getElementById("editAge")
+        .value
+    );
 
+  user.gender =
+    document.getElementById("editGender")
+      .value;
+
+  user.city =
+    document.getElementById("editCity")
+      .value.trim();
+
+  user.bio =
+    document.getElementById("editBio")
+      .value.trim();
+
+
+  const photoInput =
+    document.getElementById("editPhoto");
+
+
+  if(
+    !user.name ||
+    !user.age ||
+    !user.gender ||
+    !user.city
+  ){
+
+    showToast("প্রয়োজনীয় তথ্য পূরণ করুন");
     return;
   }
 
 
-  if(age < 18){
+  if(photoInput.files.length > 0){
 
-    alert("Amit Match শুধুমাত্র 18+ ব্যবহারকারীদের জন্য।");
+    const reader =
+      new FileReader();
 
-    return;
+    reader.onload =
+      function(e){
+
+        user.photo =
+          e.target.result;
+
+        finishProfileSave();
+
+      };
+
+    reader.readAsDataURL(
+      photoInput.files[0]
+    );
+
+  }else{
+
+    finishProfileSave();
+
   }
+}
 
 
-  myProfile = {
-    name,
-    age,
-    gender,
-    city,
-    photo:
-      photo ||
-      "https://via.placeholder.com/600x600?text=Profile",
-    bio:
-      bio ||
-      "Amit Match member."
-  };
+function finishProfileSave(){
+
+  saveUsers();
+
+  document.getElementById("editPhoto")
+    .value="";
+
+  closeEditProfile();
+
+  renderMyProfile();
+
+  showToast("Profile updated ❤️");
+}
 
 
-  localStorage.setItem(
-    "amitMyProfile",
-    JSON.stringify(myProfile)
+/* =====================================================
+   DELETE ACCOUNT
+   ===================================================== */
+
+function deleteAccount(){
+
+  const user =
+    getCurrentUser();
+
+  if(!user) return;
+
+
+  const ok =
+    confirm(
+      "আপনি কি সত্যিই Account delete করতে চান?"
+    );
+
+
+  if(!ok) return;
+
+
+  users =
+    users.filter(
+      u => u.id !== user.id
+    );
+
+
+  /* Remove deleted user's likes
+     from all other users */
+
+  users.forEach(u => {
+
+    if(u.likes){
+
+      u.likes =
+        u.likes.filter(
+          id => id !== user.id
+        );
+
+    }
+
+  });
+
+
+  saveUsers();
+
+
+  currentUserId = null;
+
+  localStorage.removeItem(
+    CURRENT_KEY
   );
 
 
-  document.getElementById("saveMessage").innerText =
-    "✅ Profile সফলভাবে Save হয়েছে!";
+  showToast("Account deleted");
 
-
-  setTimeout(()=>{
-    document.getElementById("saveMessage").innerText="";
-  },3000);
+  showPage("login");
 }
 
 
-/* =========================
-   LOAD PROFILE
-========================= */
+/* =====================================================
+   HELPERS
+   ===================================================== */
 
-function loadMyProfile(){
+function genderText(gender){
 
-  if(!myProfile) return;
+  if(gender === "Male")
+    return "পুরুষ";
 
-  document.getElementById("myName").value =
-    myProfile.name || "";
+  if(gender === "Female")
+    return "মহিলা";
 
-  document.getElementById("myAge").value =
-    myProfile.age || "";
-
-  document.getElementById("myGender").value =
-    myProfile.gender || "";
-
-  document.getElementById("myCity").value =
-    myProfile.city || "";
-
-  document.getElementById("myPhoto").value =
-    myProfile.photo || "";
-
-  document.getElementById("myBio").value =
-    myProfile.bio || "";
+  return "অন্যান্য";
 }
 
 
-/* =========================
-   CLEAR SEARCH
-========================= */
+function escapeHTML(value){
 
-function clearSearch(){
+  if(value === null ||
+     value === undefined)
+    return "";
 
-  document.getElementById("searchName").value="";
-  document.getElementById("searchGender").value="";
-  document.getElementById("searchAge").value="";
-  document.getElementById("searchCity").value="";
-
-  renderProfiles();
-}
-
-
-/* =========================
-   MESSAGE DEMO
-========================= */
-
-function startChat(name){
-
-  alert(
-    "💬 " + name +
-    " এর সাথে Chat শুরু করতে Login/Database system প্রয়োজন।"
-  );
-}
-
-
-/* =========================
-   SECURITY HELPER
-========================= */
-
-function escapeHTML(text){
-
-  return String(text)
+  return String(value)
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
     .replace(/>/g,"&gt;")
@@ -940,11 +1925,53 @@ function escapeHTML(text){
 }
 
 
-/* =========================
-   START
-========================= */
+function showToast(message){
 
-renderProfiles();
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent = message;
+
+  toast.classList.add("show");
+
+  setTimeout(
+    () => toast.classList.remove("show"),
+    2500
+  );
+}
+
+
+function clearRegisterForm(){
+
+  document.getElementById("regName").value="";
+  document.getElementById("regEmail").value="";
+  document.getElementById("regPassword").value="";
+  document.getElementById("regAge").value="";
+  document.getElementById("regGender").value="";
+  document.getElementById("regCity").value="";
+  document.getElementById("regBio").value="";
+  document.getElementById("regPhoto").value="";
+}
+
+
+/* =====================================================
+   START APP
+   ===================================================== */
+
+createDemoUsers();
+
+updateNavigation();
+
+
+if(getCurrentUser()){
+
+  showPage("home");
+
+}else{
+
+  showPage("login");
+
+}
 
 </script>
 
