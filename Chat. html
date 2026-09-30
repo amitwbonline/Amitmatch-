@@ -12,51 +12,39 @@
 
 body{
   margin:0;
-  font-family:Arial, sans-serif;
-  background:#fff4f8;
+  font-family:Arial,sans-serif;
+  background:#fff5f9;
   color:#29252d;
 }
 
 .header{
-  background:linear-gradient(135deg,#f72570,#a92bb8);
+  background:linear-gradient(135deg,#f72572,#a928bd);
   color:white;
-  padding:18px 12px;
+  padding:16px;
   text-align:center;
-  box-shadow:0 3px 12px rgba(0,0,0,.15);
+  position:sticky;
+  top:0;
+  z-index:10;
 }
 
-.logo{
-  font-size:34px;
-  font-weight:bold;
-  margin-bottom:15px;
+.header h1{
+  margin:0;
+  font-size:26px;
 }
 
-.nav{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:10px;
-}
-
-.nav a{
-  text-decoration:none;
+.back{
+  display:inline-block;
+  margin-top:10px;
   color:white;
-  background:rgba(255,255,255,.18);
-  padding:12px 20px;
-  border-radius:30px;
-  font-size:17px;
-}
-
-.nav a:hover{
-  background:white;
-  color:#e51b70;
+  text-decoration:none;
+  font-size:16px;
 }
 
 .chat-box{
   max-width:700px;
   margin:15px auto;
   background:white;
-  min-height:calc(100vh - 150px);
+  min-height:calc(100vh - 120px);
   border-radius:18px;
   box-shadow:0 3px 15px rgba(0,0,0,.12);
   display:flex;
@@ -64,144 +52,103 @@ body{
   overflow:hidden;
 }
 
-.chat-title{
-  padding:18px;
-  background:linear-gradient(135deg,#f72570,#b52ab8);
-  color:white;
-  font-size:23px;
-  font-weight:bold;
-  text-align:center;
-}
-
 .person{
   padding:15px;
   border-bottom:1px solid #eee;
-  font-size:18px;
+  font-size:19px;
   font-weight:bold;
-  text-align:center;
 }
 
 #messages{
   flex:1;
   padding:15px;
   overflow-y:auto;
-  min-height:400px;
+  min-height:450px;
 }
 
 .message{
-  max-width:75%;
-  padding:11px 15px;
+  max-width:78%;
+  padding:11px 14px;
   margin:8px 0;
   border-radius:18px;
-  font-size:16px;
-  line-height:1.5;
   word-wrap:break-word;
+  line-height:1.4;
 }
 
-.received{
-  background:#f0f0f0;
-  margin-right:auto;
-  border-bottom-left-radius:5px;
-}
-
-.sent{
-  background:#e91e73;
-  color:white;
+.me{
   margin-left:auto;
+  background:#e91e63;
+  color:white;
   border-bottom-right-radius:5px;
 }
 
+.other{
+  margin-right:auto;
+  background:#eeeeee;
+  color:#222;
+  border-bottom-left-radius:5px;
+}
+
 .time{
-  display:block;
   font-size:11px;
-  opacity:.65;
+  opacity:.7;
+  display:block;
   margin-top:4px;
 }
 
 .empty{
   text-align:center;
   color:#888;
-  padding:80px 20px;
-  font-size:18px;
+  padding-top:80px;
 }
 
 .input-area{
   display:flex;
   gap:8px;
   padding:12px;
-  border-top:1px solid #eee;
-  background:#fff;
+  border-top:1px solid #ddd;
+  background:white;
 }
 
 #messageInput{
   flex:1;
   border:1px solid #ddd;
   border-radius:25px;
-  padding:13px 17px;
+  padding:13px 16px;
   font-size:16px;
   outline:none;
 }
 
-#messageInput:focus{
-  border-color:#e91e73;
-}
-
 #sendBtn{
-  border:none;
-  background:linear-gradient(135deg,#f72570,#a92bb8);
+  border:0;
+  background:linear-gradient(135deg,#f72572,#a928bd);
   color:white;
   border-radius:25px;
-  padding:0 22px;
+  padding:0 20px;
   font-size:16px;
   font-weight:bold;
-  cursor:pointer;
 }
 
-#sendBtn:active{
-  transform:scale(.97);
+#sendBtn:disabled{
+  opacity:.5;
 }
 
-.login-box{
+.status{
   text-align:center;
-  padding:70px 20px;
-}
-
-.login-box h2{
-  color:#e91e73;
-}
-
-.login-box button{
-  border:none;
-  background:#e91e73;
-  color:white;
-  padding:12px 25px;
-  border-radius:25px;
-  font-size:16px;
+  font-size:13px;
+  color:#777;
+  padding:5px;
 }
 
 @media(max-width:600px){
-
-  .logo{
-    font-size:30px;
-  }
-
-  .nav a{
-    padding:10px 15px;
-    font-size:15px;
-  }
-
   .chat-box{
     margin:0;
     border-radius:0;
-    min-height:calc(100vh - 135px);
+    min-height:calc(100vh - 80px);
   }
 
-  .message{
-    max-width:85%;
-  }
-
-  #sendBtn{
-    padding:0 17px;
+  #messages{
+    min-height:400px;
   }
 }
 </style>
@@ -209,83 +156,67 @@ body{
 
 <body>
 
-<header class="header">
-
-  <div class="logo">💖 Amit Match</div>
-
-  <nav class="nav">
-    <a href="index.html">Home</a>
-    <a href="index.html">🔎 Search</a>
-    <a href="index.html">👤 My Profile</a>
-    <a href="index.html">💕 Matches</a>
-    <a href="index.html">Logout</a>
-  </nav>
-
-</header>
-
+<div class="header">
+  <h1>💖 Amit Match Chat</h1>
+  <a class="back" href="index.html">← Back to Amit Match</a>
+</div>
 
 <div class="chat-box">
 
-  <div class="chat-title">
+  <div class="person" id="personName">
     💬 Chat
   </div>
 
-  <div class="person" id="personName">
-    👤 Chat with your Match
+  <div class="status" id="status">
+    Connecting...
   </div>
 
   <div id="messages">
-
-    <div class="empty" id="emptyMessage">
-      💕 আপনার Match-এর সাথে কথা বলুন<br><br>
-      নিচে মেসেজ লিখে Send করুন।
+    <div class="empty">
+      💬 কোনো মেসেজ নেই।<br>
+      কথা বলা শুরু করুন ❤️
     </div>
-
   </div>
 
   <div class="input-area">
-
     <input
       type="text"
       id="messageInput"
-      placeholder="মেসেজ লিখুন..."
+      placeholder="আপনার মেসেজ লিখুন..."
       autocomplete="off"
     >
-
-    <button id="sendBtn">
-      Send
-    </button>
-
+    <button id="sendBtn">Send</button>
   </div>
 
 </div>
 
-
 <script type="module">
 
-/* Firebase */
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
   getAuth,
   onAuthStateChanged
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+} from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
   getFirestore,
   collection,
   addDoc,
   query,
+  where,
   orderBy,
   onSnapshot,
   serverTimestamp
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+} from
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-/* Firebase configuration */
+/* =========================
+   FIREBASE CONFIG
+========================= */
 
 const firebaseConfig = {
   apiKey: "AIzaSyAHKG7uIA3oQK5Syfq96xJW-lKbjihswl4",
@@ -298,7 +229,9 @@ const firebaseConfig = {
 };
 
 
-/* Firebase start */
+/* =========================
+   INITIALIZE FIREBASE
+========================= */
 
 const app = initializeApp(firebaseConfig);
 
@@ -307,12 +240,14 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 
-/* HTML elements */
+/* =========================
+   HTML ELEMENTS
+========================= */
 
 const messagesBox =
   document.getElementById("messages");
 
-const input =
+const messageInput =
   document.getElementById("messageInput");
 
 const sendBtn =
@@ -321,60 +256,147 @@ const sendBtn =
 const personName =
   document.getElementById("personName");
 
-const emptyMessage =
-  document.getElementById("emptyMessage");
+const statusText =
+  document.getElementById("status");
 
+
+/* =========================
+   GET CHAT USER FROM URL
+=========================
+
+Example:
+
+Chat.html?uid=USER_ID&name=Rahul
+
+*/
+
+const params =
+  new URLSearchParams(window.location.search);
+
+const receiverId =
+  params.get("uid");
+
+const receiverName =
+  params.get("name") || "User";
+
+
+/* =========================
+   SHOW PERSON NAME
+========================= */
+
+personName.innerHTML =
+  "💬 " +
+  decodeURIComponent(receiverName);
+
+
+/* =========================
+   CHECK RECEIVER
+========================= */
+
+if(!receiverId){
+
+  statusText.innerText =
+    "❌ Chat করার জন্য কোনো user নির্বাচন করা হয়নি।";
+
+  sendBtn.disabled = true;
+
+}
+
+
+/* =========================
+   CURRENT USER
+========================= */
 
 let currentUser = null;
 
 
-/* Check login */
+/* =========================
+   LOGIN CHECK
+========================= */
 
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, user => {
 
-  if(user){
+  if(!user){
 
-    currentUser = user;
+    statusText.innerText =
+      "❌ আগে Login করুন।";
 
-    personName.innerHTML =
-      "👤 Chatting as: " +
-      (user.email || "User");
+    sendBtn.disabled = true;
+
+    return;
+  }
+
+  currentUser = user;
+
+  statusText.innerText =
+    "🟢 Online";
+
+  if(receiverId){
 
     loadMessages();
-
-  }else{
-
-    personName.innerHTML =
-      "⚠️ আগে Login করুন";
-
   }
 
 });
 
 
-/* Load messages */
+/* =========================
+   LOAD MESSAGES
+========================= */
 
 function loadMessages(){
 
-  const messagesRef =
-    collection(db, "messages");
+  /*
+    একই chat-এর message আনার জন্য
+    দুই দিকের message query করা হচ্ছে।
+  */
 
-  const q =
-    query(
-      messagesRef,
-      orderBy("createdAt", "asc")
-    );
+  const q1 = query(
+    collection(db,"messages"),
+    where("senderId","==",currentUser.uid),
+    where("receiverId","==",receiverId),
+    orderBy("createdAt","asc")
+  );
 
-  onSnapshot(q, (snapshot) => {
+
+  const q2 = query(
+    collection(db,"messages"),
+    where("senderId","==",receiverId),
+    where("receiverId","==",currentUser.uid),
+    orderBy("createdAt","asc")
+  );
+
+
+  let sentMessages = [];
+  let receivedMessages = [];
+
+
+  function showAll(){
+
+    const allMessages =
+      [...sentMessages,...receivedMessages];
+
+    allMessages.sort((a,b)=>{
+
+      const ta =
+        a.createdAt?.toMillis?.() || 0;
+
+      const tb =
+        b.createdAt?.toMillis?.() || 0;
+
+      return ta - tb;
+
+    });
+
 
     messagesBox.innerHTML = "";
 
-    if(snapshot.empty){
+
+    if(allMessages.length === 0){
 
       messagesBox.innerHTML = `
         <div class="empty">
-          💕 এখনো কোনো মেসেজ নেই।<br><br>
-          প্রথম মেসেজটি আপনি পাঠান।
+          💬 কোনো মেসেজ নেই।<br>
+          কথা বলা শুরু করুন ❤️
         </div>
       `;
 
@@ -382,62 +404,44 @@ function loadMessages(){
     }
 
 
-    snapshot.forEach((doc) => {
-
-      const data = doc.data();
+    allMessages.forEach(msg => {
 
       const div =
         document.createElement("div");
 
-      const isMine =
-        currentUser &&
-        data.uid === currentUser.uid;
-
-      div.className =
-        "message " +
-        (isMine ? "sent" : "received");
+      div.classList.add("message");
 
 
-      const text =
-        document.createElement("span");
+      if(msg.senderId === currentUser.uid){
 
-      text.textContent =
-        data.text || "";
+        div.classList.add("me");
 
+      }else{
 
-      const time =
-        document.createElement("span");
-
-      time.className = "time";
-
-      if(data.createdAt){
-
-        try{
-
-          const date =
-            data.createdAt.toDate();
-
-          time.textContent =
-            date.toLocaleTimeString(
-              "bn-BD",
-              {
-                hour:"2-digit",
-                minute:"2-digit"
-              }
-            );
-
-        }catch(e){
-
-          time.textContent = "";
-
-        }
+        div.classList.add("other");
 
       }
 
 
-      div.appendChild(text);
+      const time =
+        msg.createdAt?.toDate
+        ? msg.createdAt.toDate()
+        : new Date();
 
-      div.appendChild(time);
+
+      div.innerHTML = `
+        ${escapeHTML(msg.text)}
+        <span class="time">
+          ${time.toLocaleTimeString(
+            "bn-BD",
+            {
+              hour:"2-digit",
+              minute:"2-digit"
+            }
+          )}
+        </span>
+      `;
+
 
       messagesBox.appendChild(div);
 
@@ -447,69 +451,115 @@ function loadMessages(){
     messagesBox.scrollTop =
       messagesBox.scrollHeight;
 
+  }
+
+
+  onSnapshot(q1, snapshot => {
+
+    sentMessages =
+      snapshot.docs.map(doc => ({
+        id:doc.id,
+        ...doc.data()
+      }));
+
+    showAll();
+
+  });
+
+
+  onSnapshot(q2, snapshot => {
+
+    receivedMessages =
+      snapshot.docs.map(doc => ({
+        id:doc.id,
+        ...doc.data()
+      }));
+
+    showAll();
+
   });
 
 }
 
 
-/* Send message */
+/* =========================
+   SEND MESSAGE
+========================= */
 
 async function sendMessage(){
-
-  const text =
-    input.value.trim();
-
-
-  if(!text){
-
-    return;
-
-  }
-
 
   if(!currentUser){
 
     alert("আগে Login করুন।");
 
     return;
+  }
 
+
+  if(!receiverId){
+
+    alert("Receiver পাওয়া যায়নি।");
+
+    return;
+  }
+
+
+  const text =
+    messageInput.value.trim();
+
+
+  if(!text){
+
+    return;
   }
 
 
   sendBtn.disabled = true;
 
+
   try{
 
     await addDoc(
-      collection(db, "messages"),
+      collection(db,"messages"),
       {
-        uid: currentUser.uid,
-        email: currentUser.email || "",
-        text: text,
-        createdAt: serverTimestamp()
+
+        senderId:
+          currentUser.uid,
+
+        receiverId:
+          receiverId,
+
+        text:
+          text,
+
+        createdAt:
+          serverTimestamp()
+
       }
     );
 
-    input.value = "";
 
-    input.focus();
+    messageInput.value = "";
 
   }catch(error){
 
     console.error(error);
 
     alert(
-      "Message পাঠানো যায়নি। Firebase Rules পরীক্ষা করুন।"
+      "Message পাঠানো যায়নি। Firebase Rules চেক করুন।"
     );
 
   }
+
 
   sendBtn.disabled = false;
 
 }
 
 
-/* Button */
+/* =========================
+   SEND BUTTON
+========================= */
 
 sendBtn.addEventListener(
   "click",
@@ -517,11 +567,13 @@ sendBtn.addEventListener(
 );
 
 
-/* Enter key */
+/* =========================
+   ENTER KEY
+========================= */
 
-input.addEventListener(
+messageInput.addEventListener(
   "keydown",
-  (event) => {
+  event => {
 
     if(event.key === "Enter"){
 
@@ -533,6 +585,22 @@ input.addEventListener(
 
   }
 );
+
+
+/* =========================
+   SECURITY
+========================= */
+
+function escapeHTML(text){
+
+  return text
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
 
 </script>
 
