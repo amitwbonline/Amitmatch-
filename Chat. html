@@ -1,587 +1,418 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amit Match - Chat</title>
 
-  <title>Amit Match - Chat</title>
+<style>
+*{
+  box-sizing:border-box;
+}
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#fff4f8;
+  color:#29252d;
+}
 
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #fff4f8;
-      color: #292735;
-    }
+.header{
+  background:linear-gradient(135deg,#f72570,#a92bb8);
+  color:white;
+  padding:18px 12px;
+  text-align:center;
+  box-shadow:0 3px 12px rgba(0,0,0,.15);
+}
 
-    /* HEADER */
-    .header {
-      background: linear-gradient(135deg, #ec1970, #a52bb8);
-      color: white;
-      padding: 18px 15px;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      box-shadow: 0 3px 12px rgba(0,0,0,.15);
-    }
+.logo{
+  font-size:34px;
+  font-weight:bold;
+  margin-bottom:15px;
+}
 
-    .header-top {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      max-width: 700px;
-      margin: auto;
-    }
+.nav{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:10px;
+}
 
-    .back {
-      border: none;
-      background: rgba(255,255,255,.2);
-      color: white;
-      font-size: 27px;
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      cursor: pointer;
-    }
+.nav a{
+  text-decoration:none;
+  color:white;
+  background:rgba(255,255,255,.18);
+  padding:12px 20px;
+  border-radius:30px;
+  font-size:17px;
+}
 
-    .person-info {
-      flex: 1;
-    }
+.nav a:hover{
+  background:white;
+  color:#e51b70;
+}
 
-    .person-name {
-      font-size: 21px;
-      font-weight: bold;
-    }
+.chat-box{
+  max-width:700px;
+  margin:15px auto;
+  background:white;
+  min-height:calc(100vh - 150px);
+  border-radius:18px;
+  box-shadow:0 3px 15px rgba(0,0,0,.12);
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
 
-    .status {
-      font-size: 13px;
-      opacity: .85;
-      margin-top: 3px;
-    }
+.chat-title{
+  padding:18px;
+  background:linear-gradient(135deg,#f72570,#b52ab8);
+  color:white;
+  font-size:23px;
+  font-weight:bold;
+  text-align:center;
+}
 
-    /* CHAT BOX */
-    .chat-box {
-      max-width: 700px;
-      margin: auto;
-      background: white;
-      min-height: calc(100vh - 145px);
-      display: flex;
-      flex-direction: column;
-    }
+.person{
+  padding:15px;
+  border-bottom:1px solid #eee;
+  font-size:18px;
+  font-weight:bold;
+  text-align:center;
+}
 
-    #messages {
-      flex: 1;
-      padding: 18px 14px 100px;
-      overflow-y: auto;
-    }
+#messages{
+  flex:1;
+  padding:15px;
+  overflow-y:auto;
+  min-height:400px;
+}
 
-    .welcome {
-      text-align: center;
-      color: #888;
-      padding: 40px 20px;
-      font-size: 15px;
-    }
+.message{
+  max-width:75%;
+  padding:11px 15px;
+  margin:8px 0;
+  border-radius:18px;
+  font-size:16px;
+  line-height:1.5;
+  word-wrap:break-word;
+}
 
-    .message-row {
-      display: flex;
-      margin: 8px 0;
-    }
+.received{
+  background:#f0f0f0;
+  margin-right:auto;
+  border-bottom-left-radius:5px;
+}
 
-    .message-row.me {
-      justify-content: flex-end;
-    }
+.sent{
+  background:#e91e73;
+  color:white;
+  margin-left:auto;
+  border-bottom-right-radius:5px;
+}
 
-    .message-row.other {
-      justify-content: flex-start;
-    }
+.time{
+  display:block;
+  font-size:11px;
+  opacity:.65;
+  margin-top:4px;
+}
 
-    .message {
-      max-width: 78%;
-      padding: 10px 14px;
-      border-radius: 18px;
-      font-size: 16px;
-      line-height: 1.4;
-      word-wrap: break-word;
-    }
+.empty{
+  text-align:center;
+  color:#888;
+  padding:80px 20px;
+  font-size:18px;
+}
 
-    .me .message {
-      background: linear-gradient(135deg, #ed1970, #b326b6);
-      color: white;
-      border-bottom-right-radius: 5px;
-    }
+.input-area{
+  display:flex;
+  gap:8px;
+  padding:12px;
+  border-top:1px solid #eee;
+  background:#fff;
+}
 
-    .other .message {
-      background: #eeeeF4;
-      color: #222;
-      border-bottom-left-radius: 5px;
-    }
+#messageInput{
+  flex:1;
+  border:1px solid #ddd;
+  border-radius:25px;
+  padding:13px 17px;
+  font-size:16px;
+  outline:none;
+}
 
-    .time {
-      font-size: 10px;
-      opacity: .7;
-      margin-top: 4px;
-      text-align: right;
-    }
+#messageInput:focus{
+  border-color:#e91e73;
+}
 
-    /* INPUT */
-    .input-area {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: white;
-      border-top: 1px solid #ddd;
-      padding: 10px;
-      z-index: 20;
-    }
+#sendBtn{
+  border:none;
+  background:linear-gradient(135deg,#f72570,#a92bb8);
+  color:white;
+  border-radius:25px;
+  padding:0 22px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
 
-    .input-inner {
-      max-width: 700px;
-      margin: auto;
-      display: flex;
-      gap: 8px;
-    }
+#sendBtn:active{
+  transform:scale(.97);
+}
 
-    #messageInput {
-      flex: 1;
-      border: 1px solid #ddd;
-      border-radius: 25px;
-      padding: 13px 17px;
-      font-size: 16px;
-      outline: none;
-      background: #f7f7f9;
-    }
+.login-box{
+  text-align:center;
+  padding:70px 20px;
+}
 
-    #messageInput:focus {
-      border-color: #e52a82;
-      background: white;
-    }
+.login-box h2{
+  color:#e91e73;
+}
 
-    #sendBtn {
-      width: 52px;
-      height: 52px;
-      border: none;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #ed1970, #a52bb8);
-      color: white;
-      font-size: 22px;
-      cursor: pointer;
-    }
+.login-box button{
+  border:none;
+  background:#e91e73;
+  color:white;
+  padding:12px 25px;
+  border-radius:25px;
+  font-size:16px;
+}
 
-    #sendBtn:disabled {
-      opacity: .5;
-    }
+@media(max-width:600px){
 
-    /* LOGIN / ERROR */
-    .notice {
-      max-width: 650px;
-      margin: 40px auto;
-      padding: 25px;
-      text-align: center;
-      background: white;
-      border-radius: 18px;
-      box-shadow: 0 3px 15px rgba(0,0,0,.08);
-    }
+  .logo{
+    font-size:30px;
+  }
 
-    .notice h2 {
-      color: #d92376;
-    }
+  .nav a{
+    padding:10px 15px;
+    font-size:15px;
+  }
 
-    .notice button {
-      border: none;
-      background: #e91e73;
-      color: white;
-      padding: 12px 22px;
-      border-radius: 25px;
-      font-size: 15px;
-      margin-top: 12px;
-      cursor: pointer;
-    }
+  .chat-box{
+    margin:0;
+    border-radius:0;
+    min-height:calc(100vh - 135px);
+  }
 
-    .loading {
-      text-align: center;
-      padding: 40px;
-      color: #888;
-    }
-  </style>
+  .message{
+    max-width:85%;
+  }
+
+  #sendBtn{
+    padding:0 17px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <div class="header">
-    <div class="header-top">
+<header class="header">
 
-      <button class="back" onclick="goBack()">‹</button>
+  <div class="logo">💖 Amit Match</div>
 
-      <div class="person-info">
-        <div class="person-name" id="personName">
-          Chat
-        </div>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="index.html">🔎 Search</a>
+    <a href="index.html">👤 My Profile</a>
+    <a href="index.html">💕 Matches</a>
+    <a href="index.html">Logout</a>
+  </nav>
 
-        <div class="status" id="status">
-          Connecting...
-        </div>
-      </div>
+</header>
 
-    </div>
+
+<div class="chat-box">
+
+  <div class="chat-title">
+    💬 Chat
   </div>
 
+  <div class="person" id="personName">
+    👤 Chat with your Match
+  </div>
 
-  <!-- CHAT -->
-  <div class="chat-box">
+  <div id="messages">
 
-    <div id="messages">
-
-      <div class="loading" id="loading">
-        Chat loading...
-      </div>
-
+    <div class="empty" id="emptyMessage">
+      💕 আপনার Match-এর সাথে কথা বলুন<br><br>
+      নিচে মেসেজ লিখে Send করুন।
     </div>
 
   </div>
 
-
-  <!-- MESSAGE INPUT -->
   <div class="input-area">
 
-    <div class="input-inner">
+    <input
+      type="text"
+      id="messageInput"
+      placeholder="মেসেজ লিখুন..."
+      autocomplete="off"
+    >
 
-      <input
-        id="messageInput"
-        type="text"
-        placeholder="মেসেজ লিখুন..."
-        autocomplete="off"
-      >
-
-      <button id="sendBtn">
-        ➤
-      </button>
-
-    </div>
+    <button id="sendBtn">
+      Send
+    </button>
 
   </div>
 
-
-  <!-- FIREBASE -->
-  <script type="module">
-
-    import { initializeApp } from
-      "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
-
-    import {
-      getAuth,
-      onAuthStateChanged
-    } from
-      "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
-
-    import {
-      getFirestore,
-      collection,
-      addDoc,
-      query,
-      orderBy,
-      onSnapshot,
-      serverTimestamp
-    } from
-      "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+</div>
 
 
-    /* =========================
-       FIREBASE CONFIG
-    ========================= */
+<script type="module">
 
-    const firebaseConfig = {
+/* Firebase */
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-      apiKey: "AIzaSyAHKG7uIA3oQK5Syfq96xJW-lKbjihswl4",
+import {
+  getAuth,
+  onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-      authDomain: "amit-match.firebaseapp.com",
-
-      projectId: "amit-match",
-
-      storageBucket: "amit-match.firebasestorage.app",
-
-      messagingSenderId: "128100464896",
-
-      appId: "1:128100464896:web:471c7a89502d1a6a679be5",
-
-      measurementId: "G-F1P824DE41"
-
-    };
-
-
-    /* =========================
-       INITIALIZE FIREBASE
-    ========================= */
-
-    const app = initializeApp(firebaseConfig);
-
-    const auth = getAuth(app);
-
-    const db = getFirestore(app);
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  query,
+  orderBy,
+  onSnapshot,
+  serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-    /* =========================
-       GET CHAT PARTNER
-       
-       Example:
-       Chat.html?uid=ABC123&name=Rahul
-    ========================= */
+/* Firebase configuration */
 
-    const params = new URLSearchParams(window.location.search);
-
-    const partnerUid = params.get("uid");
-
-    const partnerName =
-      params.get("name") || "Amit Match User";
+const firebaseConfig = {
+  apiKey: "AIzaSyAHKG7uIA3oQK5Syfq96xJW-lKbjihswl4",
+  authDomain: "amit-match.firebaseapp.com",
+  projectId: "amit-match",
+  storageBucket: "amit-match.firebasestorage.app",
+  messagingSenderId: "128100464896",
+  appId: "1:128100464896:web:471c7a89502d1a6a679be5",
+  measurementId: "G-F1P824DE41"
+};
 
 
-    document.getElementById("personName").textContent =
-      partnerName;
+/* Firebase start */
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
 
 
-    /* =========================
-       VARIABLES
-    ========================= */
+/* HTML elements */
 
-    let currentUser = null;
+const messagesBox =
+  document.getElementById("messages");
 
-    let chatId = null;
+const input =
+  document.getElementById("messageInput");
 
-    let unsubscribeMessages = null;
+const sendBtn =
+  document.getElementById("sendBtn");
+
+const personName =
+  document.getElementById("personName");
+
+const emptyMessage =
+  document.getElementById("emptyMessage");
 
 
-    /* =========================
-       CREATE CHAT ID
-       
-       Same two users always get
-       the same chat room.
-    ========================= */
+let currentUser = null;
 
-    function makeChatId(uid1, uid2) {
 
-      return [uid1, uid2]
-        .sort()
-        .join("_");
+/* Check login */
 
+onAuthStateChanged(auth, (user) => {
+
+  if(user){
+
+    currentUser = user;
+
+    personName.innerHTML =
+      "👤 Chatting as: " +
+      (user.email || "User");
+
+    loadMessages();
+
+  }else{
+
+    personName.innerHTML =
+      "⚠️ আগে Login করুন";
+
+  }
+
+});
+
+
+/* Load messages */
+
+function loadMessages(){
+
+  const messagesRef =
+    collection(db, "messages");
+
+  const q =
+    query(
+      messagesRef,
+      orderBy("createdAt", "asc")
+    );
+
+  onSnapshot(q, (snapshot) => {
+
+    messagesBox.innerHTML = "";
+
+    if(snapshot.empty){
+
+      messagesBox.innerHTML = `
+        <div class="empty">
+          💕 এখনো কোনো মেসেজ নেই।<br><br>
+          প্রথম মেসেজটি আপনি পাঠান।
+        </div>
+      `;
+
+      return;
     }
 
 
-    /* =========================
-       BACK BUTTON
-    ========================= */
+    snapshot.forEach((doc) => {
 
-    window.goBack = function() {
+      const data = doc.data();
 
-      if (document.referrer) {
-
-        history.back();
-
-      } else {
-
-        window.location.href = "index.html";
-
-      }
-
-    };
-
-
-    /* =========================
-       AUTH CHECK
-    ========================= */
-
-    onAuthStateChanged(auth, (user) => {
-
-      if (!user) {
-
-        showNotice(
-          "Login required",
-          "Chat করার জন্য আগে আপনার Amit Match account-এ Login করুন।"
-        );
-
-        document.getElementById("status").textContent =
-          "Not logged in";
-
-        return;
-
-      }
-
-
-      currentUser = user;
-
-
-      /* No partner selected */
-
-      if (!partnerUid) {
-
-        showNotice(
-          "Chat user পাওয়া যায়নি",
-          "কোন user-এর সাথে chat করবেন তার UID পাওয়া যায়নি।"
-        );
-
-        document.getElementById("status").textContent =
-          "No chat selected";
-
-        return;
-
-      }
-
-
-      /* Cannot chat with yourself */
-
-      if (partnerUid === currentUser.uid) {
-
-        showNotice(
-          "নিজের সাথে Chat করা যাবে না",
-          "অন্য matched user নির্বাচন করুন।"
-        );
-
-        return;
-
-      }
-
-
-      chatId = makeChatId(
-        currentUser.uid,
-        partnerUid
-      );
-
-
-      document.getElementById("status").textContent =
-        "Online chat";
-
-
-      loadMessages();
-
-    });
-
-
-    /* =========================
-       LOAD MESSAGES
-    ========================= */
-
-    function loadMessages() {
-
-      const messagesRef = collection(
-        db,
-        "chats",
-        chatId,
-        "messages"
-      );
-
-
-      const messagesQuery = query(
-        messagesRef,
-        orderBy("createdAt", "asc")
-      );
-
-
-      unsubscribeMessages = onSnapshot(
-        messagesQuery,
-
-        (snapshot) => {
-
-          const messagesBox =
-            document.getElementById("messages");
-
-
-          messagesBox.innerHTML = "";
-
-
-          if (snapshot.empty) {
-
-            const welcome =
-              document.createElement("div");
-
-            welcome.className = "welcome";
-
-            welcome.innerHTML =
-              "💗 Chat শুরু করুন<br><br>" +
-              "প্রথম মেসেজটি পাঠান।";
-
-            messagesBox.appendChild(welcome);
-
-          }
-
-
-          snapshot.forEach((doc) => {
-
-            const data = doc.data();
-
-            showMessage(data);
-
-          });
-
-
-          scrollToBottom();
-
-        },
-
-        (error) => {
-
-          console.error(error);
-
-          showNotice(
-            "Chat Error",
-            "Messages load করা যাচ্ছে না। Firestore Rules check করুন।"
-          );
-
-        }
-
-      );
-
-    }
-
-
-    /* =========================
-       SHOW MESSAGE
-    ========================= */
-
-    function showMessage(data) {
-
-      const messagesBox =
-        document.getElementById("messages");
-
-
-      const row =
+      const div =
         document.createElement("div");
 
+      const isMine =
+        currentUser &&
+        data.uid === currentUser.uid;
 
-      const isMe =
-        data.senderId === currentUser.uid;
-
-
-      row.className =
-        "message-row " +
-        (isMe ? "me" : "other");
-
-
-      const bubble =
-        document.createElement("div");
-
-      bubble.className = "message";
+      div.className =
+        "message " +
+        (isMine ? "sent" : "received");
 
 
       const text =
-        document.createElement("div");
+        document.createElement("span");
 
       text.textContent =
         data.text || "";
 
 
       const time =
-        document.createElement("div");
+        document.createElement("span");
 
       time.className = "time";
 
+      if(data.createdAt){
 
-      if (data.createdAt) {
-
-        try {
+        try{
 
           const date =
             data.createdAt.toDate();
@@ -590,12 +421,12 @@
             date.toLocaleTimeString(
               "bn-BD",
               {
-                hour: "numeric",
-                minute: "2-digit"
+                hour:"2-digit",
+                minute:"2-digit"
               }
             );
 
-        } catch {
+        }catch(e){
 
           time.textContent = "";
 
@@ -604,213 +435,106 @@
       }
 
 
-      bubble.appendChild(text);
+      div.appendChild(text);
 
-      bubble.appendChild(time);
+      div.appendChild(time);
 
-      row.appendChild(bubble);
+      messagesBox.appendChild(div);
 
-      messagesBox.appendChild(row);
+    });
+
+
+    messagesBox.scrollTop =
+      messagesBox.scrollHeight;
+
+  });
+
+}
+
+
+/* Send message */
+
+async function sendMessage(){
+
+  const text =
+    input.value.trim();
+
+
+  if(!text){
+
+    return;
+
+  }
+
+
+  if(!currentUser){
+
+    alert("আগে Login করুন।");
+
+    return;
+
+  }
+
+
+  sendBtn.disabled = true;
+
+  try{
+
+    await addDoc(
+      collection(db, "messages"),
+      {
+        uid: currentUser.uid,
+        email: currentUser.email || "",
+        text: text,
+        createdAt: serverTimestamp()
+      }
+    );
+
+    input.value = "";
+
+    input.focus();
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "Message পাঠানো যায়নি। Firebase Rules পরীক্ষা করুন।"
+    );
+
+  }
+
+  sendBtn.disabled = false;
+
+}
+
+
+/* Button */
+
+sendBtn.addEventListener(
+  "click",
+  sendMessage
+);
+
+
+/* Enter key */
+
+input.addEventListener(
+  "keydown",
+  (event) => {
+
+    if(event.key === "Enter"){
+
+      event.preventDefault();
+
+      sendMessage();
 
     }
 
+  }
+);
 
-    /* =========================
-       SEND MESSAGE
-    ========================= */
-
-    async function sendMessage() {
-
-      const input =
-        document.getElementById("messageInput");
-
-
-      const text =
-        input.value.trim();
-
-
-      if (!text) return;
-
-
-      if (!currentUser) {
-
-        alert("আগে Login করুন।");
-
-        return;
-
-      }
-
-
-      if (!partnerUid) {
-
-        alert("Chat user নির্বাচন করা হয়নি।");
-
-        return;
-
-      }
-
-
-      if (!chatId) {
-
-        alert("Chat room তৈরি হয়নি।");
-
-        return;
-
-      }
-
-
-      const sendBtn =
-        document.getElementById("sendBtn");
-
-
-      sendBtn.disabled = true;
-
-
-      try {
-
-        await addDoc(
-
-          collection(
-            db,
-            "chats",
-            chatId,
-            "messages"
-          ),
-
-          {
-
-            text: text,
-
-            senderId:
-              currentUser.uid,
-
-            receiverId:
-              partnerUid,
-
-            createdAt:
-              serverTimestamp()
-
-          }
-
-        );
-
-
-        input.value = "";
-
-        input.focus();
-
-
-      } catch (error) {
-
-        console.error(error);
-
-        alert(
-          "Message পাঠানো যায়নি। Firestore Rules check করুন।"
-        );
-
-      }
-
-
-      sendBtn.disabled = false;
-
-    }
-
-
-    /* =========================
-       SEND BUTTON
-    ========================= */
-
-    document
-      .getElementById("sendBtn")
-      .addEventListener(
-        "click",
-        sendMessage
-      );
-
-
-    /* =========================
-       ENTER TO SEND
-    ========================= */
-
-    document
-      .getElementById("messageInput")
-      .addEventListener(
-        "keydown",
-        (event) => {
-
-          if (
-            event.key === "Enter" &&
-            !event.shiftKey
-          ) {
-
-            event.preventDefault();
-
-            sendMessage();
-
-          }
-
-        }
-      );
-
-
-    /* =========================
-       SCROLL
-    ========================= */
-
-    function scrollToBottom() {
-
-      const box =
-        document.getElementById("messages");
-
-
-      setTimeout(() => {
-
-        box.scrollTop =
-          box.scrollHeight;
-
-      }, 100);
-
-    }
-
-
-    /* =========================
-       NOTICE
-    ========================= */
-
-    function showNotice(title, message) {
-
-      const messages =
-        document.getElementById("messages");
-
-
-      messages.innerHTML = "";
-
-
-      const div =
-        document.createElement("div");
-
-
-      div.className = "notice";
-
-
-      div.innerHTML = `
-
-        <h2>${title}</h2>
-
-        <p>${message}</p>
-
-        <button onclick="goBack()">
-          ← Back
-        </button>
-
-      `;
-
-
-      messages.appendChild(div);
-
-    }
-
-  </script>
+</script>
 
 </body>
 </html>
