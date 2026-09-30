@@ -1,1 +1,1557 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Amit Match - Find Your Match">
+<title>Amit Match — Find Your Match</title>
 
+<style>
+*{box-sizing:border-box}
+
+:root{
+  --pink:#e91e63;
+  --pink2:#ff4f8b;
+  --dark:#20202a;
+  --text:#30303b;
+  --muted:#777783;
+  --bg:#f7f7fb;
+  --white:#fff;
+  --line:#e8e8ef;
+  --green:#16a66a;
+}
+
+body{
+  margin:0;
+  font-family:Arial,"Noto Sans Bengali",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+button,input,select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+/* HEADER */
+
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:50;
+  height:68px;
+  background:#fff;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:0 5%;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:900;
+  white-space:nowrap;
+  color:var(--dark);
+}
+
+.logo span{
+  color:var(--pink);
+}
+
+.search{
+  flex:1;
+  max-width:520px;
+  position:relative;
+}
+
+.search input{
+  width:100%;
+  border:1px solid var(--line);
+  background:#f7f7fa;
+  border-radius:25px;
+  padding:12px 18px 12px 42px;
+  outline:none;
+}
+
+.search input:focus{
+  border-color:var(--pink);
+}
+
+.search-icon{
+  position:absolute;
+  left:15px;
+  top:10px;
+}
+
+.top-actions{
+  margin-left:auto;
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+
+.icon-btn{
+  border:0;
+  background:#f4f4f7;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  font-size:18px;
+}
+
+.login-btn,
+.primary{
+  border:0;
+  background:var(--pink);
+  color:#fff;
+  border-radius:24px;
+  padding:11px 18px;
+  font-weight:700;
+}
+
+.menu{
+  display:none;
+  border:0;
+  background:none;
+  font-size:27px;
+}
+
+/* HERO */
+
+.hero{
+  max-width:1200px;
+  margin:24px auto;
+  padding:42px 6%;
+  border-radius:22px;
+  background:linear-gradient(135deg,#ffe4ed,#fff 60%,#f0e8ff);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:25px;
+}
+
+.hero h1{
+  font-size:42px;
+  line-height:1.15;
+  margin:8px 0;
+}
+
+.hero h1 span{
+  color:var(--pink);
+}
+
+.hero p{
+  color:var(--muted);
+  line-height:1.6;
+}
+
+.hero-art{
+  font-size:100px;
+  min-width:230px;
+  text-align:center;
+}
+
+/* SECTION */
+
+.section{
+  max-width:1200px;
+  margin:30px auto;
+  padding:0 20px;
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.section h2{
+  margin-bottom:16px;
+}
+
+/* FILTERS */
+
+.filters{
+  display:flex;
+  gap:10px;
+  overflow:auto;
+  padding-bottom:12px;
+}
+
+.filters button{
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:22px;
+  padding:9px 16px;
+  white-space:nowrap;
+}
+
+.filters button.active{
+  background:var(--pink);
+  color:#fff;
+  border-color:var(--pink);
+}
+
+/* PROFILE GRID */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+
+.profile{
+  background:#fff;
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid #eee;
+  box-shadow:0 5px 18px rgba(30,30,60,.07);
+}
+
+.photo{
+  height:230px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:82px;
+  background:linear-gradient(135deg,#ffe0ea,#eee5ff);
+}
+
+.profile-body{
+  padding:14px;
+}
+
+.profile h3{
+  margin:0 0 5px;
+  font-size:18px;
+}
+
+.meta{
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:8px;
+}
+
+.online{
+  color:var(--green);
+  font-weight:700;
+}
+
+.bio{
+  font-size:13px;
+  color:#666675;
+  line-height:1.45;
+  min-height:38px;
+}
+
+.profile-actions{
+  display:flex;
+  gap:7px;
+  margin-top:12px;
+}
+
+.profile-actions button{
+  flex:1;
+  border:0;
+  border-radius:9px;
+  padding:10px 6px;
+  font-weight:700;
+}
+
+.pass{
+  background:#f0f0f4;
+}
+
+.like{
+  background:#ffe4ed;
+  color:#d41454;
+}
+
+.chat{
+  background:#20202a;
+  color:#fff;
+}
+
+/* FEATURES */
+
+.features{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.feature{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:20px;
+}
+
+.feature b{
+  font-size:17px;
+}
+
+.feature p{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.5;
+}
+
+/* FOOTER */
+
+footer{
+  margin-top:50px;
+  background:#20202a;
+  color:#ddd;
+  padding:35px 20px;
+  text-align:center;
+}
+
+footer .logo{
+  color:#fff;
+}
+
+footer p{
+  color:#aaa;
+  font-size:13px;
+}
+
+/* MODAL */
+
+.modal-bg{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  z-index:100;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+}
+
+.modal-bg.show{
+  display:flex;
+}
+
+.modal{
+  background:#fff;
+  border-radius:18px;
+  max-width:480px;
+  width:100%;
+  max-height:90vh;
+  overflow:auto;
+  padding:22px;
+  position:relative;
+}
+
+.close{
+  position:absolute;
+  right:14px;
+  top:10px;
+  border:0;
+  background:#f2f2f5;
+  border-radius:50%;
+  width:35px;
+  height:35px;
+  font-size:20px;
+}
+
+.form-row{
+  margin:13px 0;
+}
+
+.form-row label{
+  display:block;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:6px;
+}
+
+.form-row input,
+.form-row select{
+  width:100%;
+  padding:11px;
+  border:1px solid #ddd;
+  border-radius:9px;
+  outline:none;
+}
+
+.full{
+  width:100%;
+  margin-top:8px;
+}
+
+/* CHAT */
+
+.chat-box{
+  height:260px;
+  background:#f7f7fa;
+  border-radius:12px;
+  padding:12px;
+  overflow:auto;
+}
+
+.msg{
+  padding:9px 12px;
+  border-radius:14px;
+  margin:7px 0;
+  max-width:78%;
+  font-size:14px;
+}
+
+.msg.them{
+  background:#fff;
+  border:1px solid #eee;
+}
+
+.msg.me{
+  background:#ffdbe7;
+  margin-left:auto;
+}
+
+.chat-input{
+  display:flex;
+  gap:8px;
+  margin-top:10px;
+}
+
+.chat-input input{
+  flex:1;
+  border:1px solid #ddd;
+  border-radius:20px;
+  padding:10px 14px;
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#20202a;
+  color:#fff;
+  padding:12px 18px;
+  border-radius:24px;
+  z-index:200;
+  display:none;
+}
+
+.toast.show{
+  display:block;
+}
+
+.empty{
+  padding:30px;
+  text-align:center;
+  color:var(--muted);
+  grid-column:1/-1;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .hero h1{
+    font-size:34px;
+  }
+
+}
+
+@media(max-width:650px){
+
+  .topbar{
+    padding:0 14px;
+    height:62px;
+    gap:8px;
+  }
+
+  .menu{
+    display:block;
+    order:-1;
+  }
+
+  .search{
+    display:none;
+  }
+
+  .top-actions .icon-btn{
+    display:none;
+  }
+
+  .login-btn{
+    padding:9px 13px;
+  }
+
+  .hero{
+    margin:12px 10px;
+    padding:28px 20px;
+  }
+
+  .hero h1{
+    font-size:30px;
+  }
+
+  .hero-art{
+    display:none;
+  }
+
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+  }
+
+  .photo{
+    height:175px;
+    font-size:65px;
+  }
+
+  .profile-body{
+    padding:11px;
+  }
+
+  .profile h3{
+    font-size:16px;
+  }
+
+  .bio{
+    font-size:12px;
+  }
+
+  .features{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:400px){
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .photo{
+    height:210px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="topbar">
+
+  <button class="menu" onclick="openMenu()">☰</button>
+
+  <div class="logo">
+    Amit<span>Match</span> 💕
+  </div>
+
+  <div class="search">
+    <span class="search-icon">🔎</span>
+    <input
+      id="search"
+      placeholder="নাম বা শহর খুঁজুন..."
+      oninput="renderProfiles()"
+    >
+  </div>
+
+  <div class="top-actions">
+
+    <button class="icon-btn" onclick="showMatches()">
+      💖
+    </button>
+
+    <button class="icon-btn" onclick="showToast('Notifications coming soon')">
+      🔔
+    </button>
+
+    <button class="login-btn" onclick="openLogin()">
+      Login / Sign up
+    </button>
+
+  </div>
+
+</header>
+
+
+<main>
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <div>
+
+    <div style="color:#e91e63;font-weight:800">
+      AMIT MATCH
+    </div>
+
+    <h1>
+      আপনার জন্য<br>
+      <span>সঠিক Match</span> খুঁজুন 💕
+    </h1>
+
+    <p>
+      নতুন মানুষের সঙ্গে পরিচিত হন,
+      পছন্দের profile-এ Like দিন এবং
+      Match হলে কথা বলুন।
+    </p>
+
+    <button
+      class="primary"
+      onclick="document.getElementById('profiles').scrollIntoView({behavior:'smooth'})"
+    >
+      Profiles দেখুন →
+    </button>
+
+  </div>
+
+  <div class="hero-art">
+    💑
+  </div>
+
+</section>
+
+
+<!-- PROFILES -->
+
+<section class="section" id="profiles">
+
+  <div class="section-head">
+
+    <h2>
+      Discover Profiles
+    </h2>
+
+    <button
+      style="border:0;background:none;color:#e91e63;font-weight:700"
+      onclick="openFilters()"
+    >
+      ⚙ Filters
+    </button>
+
+  </div>
+
+
+  <div class="filters">
+
+    <button
+      class="active"
+      onclick="setFilter('All',this)"
+    >
+      সব
+    </button>
+
+    <button
+      onclick="setFilter('Kolkata',this)"
+    >
+      Kolkata
+    </button>
+
+    <button
+      onclick="setFilter('Bardhaman',this)"
+    >
+      Bardhaman
+    </button>
+
+    <button
+      onclick="setFilter('Howrah',this)"
+    >
+      Howrah
+    </button>
+
+    <button
+      onclick="setFilter('Siliguri',this)"
+    >
+      Siliguri
+    </button>
+
+  </div>
+
+
+  <div
+    class="grid"
+    id="profileGrid"
+  ></div>
+
+</section>
+
+
+<!-- HOW IT WORKS -->
+
+<section class="section">
+
+  <h2>
+    কীভাবে কাজ করে?
+  </h2>
+
+  <div class="features">
+
+    <div class="feature">
+
+      <b>
+        👤 1. Profile তৈরি করুন
+      </b>
+
+      <p>
+        নিজের নাম, বয়স, শহর ও ছোট্ট
+        পরিচয় দিয়ে একটি profile তৈরি করুন।
+      </p>
+
+    </div>
+
+
+    <div class="feature">
+
+      <b>
+        💖 2. Like দিন
+      </b>
+
+      <p>
+        যে profile আপনার ভালো লাগে
+        সেখানে Like চাপুন।
+      </p>
+
+    </div>
+
+
+    <div class="feature">
+
+      <b>
+        💬 3. Match হলে Chat
+      </b>
+
+      <p>
+        দুইজন Like করলে Match তৈরি হবে
+        এবং Chat শুরু করা যাবে।
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  <div class="logo">
+    Amit<span>Match</span> 💕
+  </div>
+
+  <p>
+    © 2026 Amit Match — Dating Website
+  </p>
+
+  <p>
+    18+ only • Respect others •
+    Never share passwords or financial information.
+  </p>
+
+</footer>
+
+
+<!-- MODAL -->
+
+<div
+  class="modal-bg"
+  id="modalBg"
+  onclick="closeOutside(event)"
+>
+
+  <div
+    class="modal"
+    id="modal"
+  ></div>
+
+</div>
+
+
+<div
+  class="toast"
+  id="toast"
+></div>
+
+
+<script>
+
+/* DEMO PROFILES */
+
+const profiles = [
+
+  {
+    id:1,
+    name:"Riya",
+    age:24,
+    city:"Kolkata",
+    icon:"👩🏻",
+    online:true,
+    bio:"Music, travel আর নতুন মানুষের সঙ্গে পরিচিত হতে ভালোবাসি।"
+  },
+
+  {
+    id:2,
+    name:"Sneha",
+    age:26,
+    city:"Howrah",
+    icon:"👩🏽",
+    online:true,
+    bio:"Books, coffee এবং weekend outing পছন্দ করি।"
+  },
+
+  {
+    id:3,
+    name:"Puja",
+    age:23,
+    city:"Bardhaman",
+    icon:"👩🏻‍🦱",
+    online:false,
+    bio:"Simple life, photography এবং nature lover."
+  },
+
+  {
+    id:4,
+    name:"Moumita",
+    age:27,
+    city:"Siliguri",
+    icon:"👩🏾",
+    online:true,
+    bio:"Travel, food আর positive people পছন্দ করি।"
+  },
+
+  {
+    id:5,
+    name:"Arjun",
+    age:27,
+    city:"Kolkata",
+    icon:"👨🏻",
+    online:true,
+    bio:"Technology, fitness এবং নতুন জায়গা explore করি।"
+  },
+
+  {
+    id:6,
+    name:"Rahul",
+    age:29,
+    city:"Bardhaman",
+    icon:"👨🏽",
+    online:false,
+    bio:"Movies, music এবং শান্ত weekend পছন্দ করি।"
+  },
+
+  {
+    id:7,
+    name:"Sourav",
+    age:25,
+    city:"Howrah",
+    icon:"👨🏻‍🦱",
+    online:true,
+    bio:"Cricket, photography ও travelling আমার hobby."
+  },
+
+  {
+    id:8,
+    name:"Amit",
+    age:30,
+    city:"Siliguri",
+    icon:"👨🏾",
+    online:true,
+    bio:"Business-minded, friendly এবং family-oriented."
+  }
+
+];
+
+
+let activeFilter = "All";
+
+
+let liked =
+JSON.parse(
+  localStorage.getItem("amitLiked") || "[]"
+);
+
+
+/* SHOW PROFILES */
+
+function renderProfiles(){
+
+  const q =
+    document
+    .getElementById("search")
+    .value
+    .toLowerCase()
+    .trim();
+
+
+  const list =
+    profiles.filter(p =>
+
+      (activeFilter === "All" ||
+       p.city === activeFilter)
+
+      &&
+
+      (p.name + " " + p.city)
+      .toLowerCase()
+      .includes(q)
+
+    );
+
+
+  const grid =
+    document.getElementById("profileGrid");
+
+
+  if(!list.length){
+
+    grid.innerHTML =
+    `
+      <div class="empty">
+        কোনো profile পাওয়া যায়নি।
+        অন্য filter বা search চেষ্টা করুন।
+      </div>
+    `;
+
+    return;
+  }
+
+
+  grid.innerHTML =
+  list.map(p => `
+
+    <article class="profile">
+
+      <div class="photo">
+        ${p.icon}
+      </div>
+
+      <div class="profile-body">
+
+        <h3>
+          ${p.name}, ${p.age}
+        </h3>
+
+        <div class="meta">
+
+          📍 ${p.city}
+
+          •
+
+          <span
+            class="${p.online ? 'online' : ''}"
+          >
+            ${p.online ? '● Online' : 'Offline'}
+          </span>
+
+        </div>
+
+        <div class="bio">
+          ${p.bio}
+        </div>
+
+        <div class="profile-actions">
+
+          <button
+            class="pass"
+            onclick="passProfile(${p.id})"
+          >
+            ✕
+          </button>
+
+          <button
+            class="like"
+            onclick="likeProfile(${p.id})"
+          >
+            ${liked.includes(p.id)
+              ? '💖 Liked'
+              : '💗 Like'}
+          </button>
+
+          <button
+            class="chat"
+            onclick="openChat(${p.id})"
+          >
+            💬
+          </button>
+
+        </div>
+
+      </div>
+
+    </article>
+
+  `).join("");
+
+}
+
+
+/* FILTER */
+
+function setFilter(filter,button){
+
+  activeFilter = filter;
+
+  document
+    .querySelectorAll(".filters button")
+    .forEach(x =>
+      x.classList.remove("active")
+    );
+
+  button.classList.add("active");
+
+  renderProfiles();
+
+}
+
+
+/* LIKE */
+
+function likeProfile(id){
+
+  if(!liked.includes(id)){
+
+    liked.push(id);
+
+    localStorage.setItem(
+      "amitLiked",
+      JSON.stringify(liked)
+    );
+
+    showToast("💖 Like saved!");
+
+  }else{
+
+    showToast(
+      "আপনি ইতিমধ্যেই Like দিয়েছেন।"
+    );
+
+  }
+
+  renderProfiles();
+
+}
+
+
+/* PASS */
+
+function passProfile(id){
+
+  showToast(
+    "Profile skipped"
+  );
+
+}
+
+
+/* MY LIKES */
+
+function showMatches(){
+
+  const names =
+    profiles
+    .filter(p => liked.includes(p.id))
+    .map(p => p.name);
+
+
+  openModal(`
+
+    <button
+      class="close"
+      onclick="closeModal()"
+    >
+      ×
+    </button>
+
+    <h2>
+      💖 My Likes
+    </h2>
+
+    ${
+      names.length
+
+      ?
+
+      `
+      <p>
+        আপনার Like করা profile:
+      </p>
+
+      <ul>
+
+        ${
+          names
+          .map(n =>
+            `<li style="padding:8px">
+              ${n}
+            </li>`
+          )
+          .join("")
+        }
+
+      </ul>
+      `
+
+      :
+
+      `
+      <p style="color:#777">
+        এখনও কোনো profile Like করেননি।
+      </p>
+      `
+    }
+
+  `);
+
+}
+
+
+/* CHAT */
+
+function openChat(id){
+
+  const p =
+    profiles.find(x => x.id === id);
+
+
+  openModal(`
+
+    <button
+      class="close"
+      onclick="closeModal()"
+    >
+      ×
+    </button>
+
+    <h2>
+      💬 Chat with ${p.name}
+    </h2>
+
+    <div
+      class="chat-box"
+      id="chatBox"
+    >
+
+      <div class="msg them">
+        Hi! 👋 কেমন আছেন?
+      </div>
+
+    </div>
+
+    <div class="chat-input">
+
+      <input
+        id="chatInput"
+        placeholder="মেসেজ লিখুন..."
+        onkeydown="
+          if(event.key==='Enter')
+          sendMsg()
+        "
+      >
+
+      <button
+        class="primary"
+        onclick="sendMsg()"
+      >
+        Send
+      </button>
+
+    </div>
+
+    <p style="font-size:12px;color:#888">
+      Demo chat: এই version-এ message
+      শুধু আপনার browser-এ দেখা যাবে।
+    </p>
+
+  `);
+
+}
+
+
+function sendMsg(){
+
+  const input =
+    document.getElementById("chatInput");
+
+
+  if(
+    !input ||
+    !input.value.trim()
+  ){
+    return;
+  }
+
+
+  const box =
+    document.getElementById("chatBox");
+
+
+  box.innerHTML +=
+  `
+    <div class="msg me">
+      ${escapeHtml(input.value)}
+    </div>
+  `;
+
+
+  input.value = "";
+
+  box.scrollTop =
+    box.scrollHeight;
+
+}
+
+
+/* SECURITY */
+
+function escapeHtml(text){
+
+  return text.replace(
+    /[&<>"']/g,
+    function(m){
+
+      return {
+        '&':'&amp;',
+        '<':'&lt;',
+        '>':'&gt;',
+        '"':'&quot;',
+        "'":'&#039;'
+
+      }[m];
+
+    }
+  );
+
+}
+
+
+/* LOGIN / REGISTER */
+
+function openLogin(){
+
+  openModal(`
+
+    <button
+      class="close"
+      onclick="closeModal()"
+    >
+      ×
+    </button>
+
+    <h2>
+      💕 Amit Match
+    </h2>
+
+    <p style="color:#777">
+      Create your demo profile
+    </p>
+
+    <div class="form-row">
+
+      <label>
+        আপনার নাম
+      </label>
+
+      <input
+        id="regName"
+        placeholder="নাম"
+      >
+
+    </div>
+
+
+    <div class="form-row">
+
+      <label>
+        বয়স
+      </label>
+
+      <input
+        id="regAge"
+        type="number"
+        min="18"
+        placeholder="18+"
+      >
+
+    </div>
+
+
+    <div class="form-row">
+
+      <label>
+        আপনার শহর
+      </label>
+
+      <input
+        id="regCity"
+        placeholder="যেমন Kolkata"
+      >
+
+    </div>
+
+
+    <div class="form-row">
+
+      <label>
+        আমি
+      </label>
+
+      <select id="regGender">
+
+        <option>
+          পুরুষ
+        </option>
+
+        <option>
+          নারী
+        </option>
+
+        <option>
+          অন্যান্য
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <button
+      class="primary full"
+      onclick="registerDemo()"
+    >
+      Create Profile
+    </button>
+
+
+    <p
+      style="font-size:12px;color:#888"
+    >
+      18+ users only.
+      বাস্তব account/login-এর জন্য
+      backend ও database প্রয়োজন হবে।
+    </p>
+
+  `);
+
+}
+
+
+function registerDemo(){
+
+  const age =
+    Number(
+      document.getElementById("regAge").value
+    );
+
+
+  const name =
+    document
+    .getElementById("regName")
+    .value
+    .trim();
+
+
+  if(!name || age < 18){
+
+    showToast(
+      "18+ বয়স এবং নাম দিন"
+    );
+
+    return;
+  }
+
+
+  closeModal();
+
+  showToast(
+    "🎉 Demo profile তৈরি হয়েছে!"
+  );
+
+}
+
+
+/* FILTER WINDOW */
+
+function openFilters(){
+
+  openModal(`
+
+    <button
+      class="close"
+      onclick="closeModal()"
+    >
+      ×
+    </button>
+
+    <h2>
+      ⚙ Filters
+    </h2>
+
+
+    <div class="form-row">
+
+      <label>
+        Minimum age
+      </label>
+
+      <input
+        type="number"
+        value="18"
+      >
+
+    </div>
+
+
+    <div class="form-row">
+
+      <label>
+        Maximum age
+      </label>
+
+      <input
+        type="number"
+        value="60"
+      >
+
+    </div>
+
+
+    <div class="form-row">
+
+      <label>
+        City
+      </label>
+
+      <select>
+
+        <option>
+          Any city
+        </option>
+
+        <option>
+          Kolkata
+        </option>
+
+        <option>
+          Bardhaman
+        </option>
+
+        <option>
+          Howrah
+        </option>
+
+        <option>
+          Siliguri
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <button
+      class="primary full"
+      onclick="
+        closeModal();
+        showToast('Filters applied')
+      "
+    >
+      Apply Filters
+    </button>
+
+  `);
+
+}
+
+
+/* MOBILE MENU */
+
+function openMenu(){
+
+  showToast(
+    "Home • Profiles • Likes • Help"
+  );
+
+}
+
+
+/* MODAL */
+
+function openModal(html){
+
+  document
+    .getElementById("modal")
+    .innerHTML = html;
+
+
+  document
+    .getElementById("modalBg")
+    .classList.add("show");
+
+}
+
+
+function closeModal(){
+
+  document
+    .getElementById("modalBg")
+    .classList.remove("show");
+
+}
+
+
+function closeOutside(event){
+
+  if(
+    event.target.id === "modalBg"
+  ){
+    closeModal();
+  }
+
+}
+
+
+/* TOAST */
+
+function showToast(text){
+
+  const toast =
+    document.getElementById("toast");
+
+
+  toast.textContent = text;
+
+  toast.classList.add("show");
+
+
+  setTimeout(
+    () => toast.classList.remove("show"),
+    2200
+  );
+
+}
+
+
+/* START */
+
+renderProfiles();
+
+</script>
+
+</body>
+  </html>
